@@ -1,0 +1,390 @@
+{
+  "info": {
+    "name": "Phraseanet API (v1)",
+    "description": "Phraseanet is an open-source (GPL-v3) Digital Asset Management platform by Alchemy (github.com/alchemy-fr/Phraseanet). This collection covers the documented REST API v1 - records, databoxes/collections, metadata, search, stories, baskets, and feeds - secured with OAuth2. Phraseanet is self-hosted: set {{baseUrl}} to https://YOUR-INSTANCE/api/v1 and provide an OAuth2 access token. Endpoints are grounded in the public v1 route documentation at docs.phraseanet.com.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      { "key": "token", "value": "{{accessToken}}", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://your-phraseanet-instance/api/v1", "type": "string" },
+    { "key": "accessToken", "value": "", "type": "string" },
+    { "key": "databox_id", "value": "1", "type": "string" },
+    { "key": "record_id", "value": "1", "type": "string" },
+    { "key": "story_id", "value": "1", "type": "string" },
+    { "key": "basket_id", "value": "1", "type": "string" },
+    { "key": "feed_id", "value": "1", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Account",
+      "item": [
+        {
+          "name": "Get the authenticated user",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/me", "host": ["{{baseUrl}}"], "path": ["me"] },
+            "description": "Returns the authenticated user (me) with profile, collection access, field access, and sub-definition access."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Databoxes",
+      "item": [
+        {
+          "name": "List databoxes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/databoxes/list", "host": ["{{baseUrl}}"], "path": ["databoxes", "list"] },
+            "description": "Returns the databoxes available to the authenticated application."
+          }
+        },
+        {
+          "name": "List collections of a databox",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/databoxes/{{databox_id}}/collections", "host": ["{{baseUrl}}"], "path": ["databoxes", "{{databox_id}}", "collections"] },
+            "description": "Returns the collections on a databox with base_id, collection_id, name, and record count."
+          }
+        },
+        {
+          "name": "Get databox status structure",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/databoxes/{{databox_id}}/status", "host": ["{{baseUrl}}"], "path": ["databoxes", "{{databox_id}}", "status"] },
+            "description": "Returns the status-bit structure of a databox."
+          }
+        },
+        {
+          "name": "Get databox metadata structure",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/databoxes/{{databox_id}}/metadatas", "host": ["{{baseUrl}}"], "path": ["databoxes", "{{databox_id}}", "metadatas"] },
+            "description": "Returns the metadata-field structure of a databox."
+          }
+        },
+        {
+          "name": "Get databox terms of use",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/databoxes/{{databox_id}}/termsOfUse", "host": ["{{baseUrl}}"], "path": ["databoxes", "{{databox_id}}", "termsOfUse"] },
+            "description": "Returns the terms of use of a databox."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Search",
+      "item": [
+        {
+          "name": "Search records and stories",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"query\": \"landscape\",\n  \"bases\": [1],\n  \"offset_start\": 0,\n  \"per_page\": 10,\n  \"search_type\": 0\n}" },
+            "url": { "raw": "{{baseUrl}}/search", "host": ["{{baseUrl}}"], "path": ["search"] },
+            "description": "Returns records matching a query with filters, facets, and paging metadata."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Records",
+      "item": [
+        {
+          "name": "Add a record",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": { "mode": "formdata", "formdata": [
+              { "key": "base_id", "value": "{{databox_id}}", "type": "text" },
+              { "key": "file", "type": "file", "src": [] }
+            ] },
+            "url": { "raw": "{{baseUrl}}/records/add", "host": ["{{baseUrl}}"], "path": ["records", "add"] },
+            "description": "Uploads a media file, creating a record (or a quarantine item when validation is required)."
+          }
+        },
+        {
+          "name": "Get a record",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/records/{{databox_id}}/{{record_id}}", "host": ["{{baseUrl}}"], "path": ["records", "{{databox_id}}", "{{record_id}}"] },
+            "description": "Returns a single record."
+          }
+        },
+        {
+          "name": "Get record sub-definitions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/records/{{databox_id}}/{{record_id}}/embed", "host": ["{{baseUrl}}"], "path": ["records", "{{databox_id}}", "{{record_id}}", "embed"] },
+            "description": "Returns the embedded sub-definitions (thumbnail, preview, document) of a record."
+          }
+        },
+        {
+          "name": "Get related records",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/records/{{databox_id}}/{{record_id}}/related", "host": ["{{baseUrl}}"], "path": ["records", "{{databox_id}}", "{{record_id}}", "related"] },
+            "description": "Returns baskets and stories referencing this record."
+          }
+        },
+        {
+          "name": "Move a record to another collection",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"base_id\": 2\n}" },
+            "url": { "raw": "{{baseUrl}}/records/{{databox_id}}/{{record_id}}/setcollection", "host": ["{{baseUrl}}"], "path": ["records", "{{databox_id}}", "{{record_id}}", "setcollection"] },
+            "description": "Moves a record to a different collection."
+          }
+        },
+        {
+          "name": "Delete a record",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/records/{{databox_id}}/{{record_id}}/delete", "host": ["{{baseUrl}}"], "path": ["records", "{{databox_id}}", "{{record_id}}", "delete"] },
+            "description": "Permanently deletes a record."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Metadata",
+      "item": [
+        {
+          "name": "Get record caption",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/records/{{databox_id}}/{{record_id}}/caption", "host": ["{{baseUrl}}"], "path": ["records", "{{databox_id}}", "{{record_id}}", "caption"] },
+            "description": "Returns the caption (display metadata) of a record."
+          }
+        },
+        {
+          "name": "Get record metadatas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/records/{{databox_id}}/{{record_id}}/metadatas", "host": ["{{baseUrl}}"], "path": ["records", "{{databox_id}}", "{{record_id}}", "metadatas"] },
+            "description": "Returns the raw metadata values of a record."
+          }
+        },
+        {
+          "name": "Set record metadatas",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"metadatas\": [\n    { \"meta_struct_id\": 1, \"value\": \"New caption value\", \"append\": false }\n  ]\n}" },
+            "url": { "raw": "{{baseUrl}}/records/{{databox_id}}/{{record_id}}/setmetadatas", "host": ["{{baseUrl}}"], "path": ["records", "{{databox_id}}", "{{record_id}}", "setmetadatas"] },
+            "description": "Adds or modifies metadata on a record against the databox metadata structure."
+          }
+        },
+        {
+          "name": "Get record status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/records/{{databox_id}}/{{record_id}}/status", "host": ["{{baseUrl}}"], "path": ["records", "{{databox_id}}", "{{record_id}}", "status"] },
+            "description": "Returns the status-bit values of a record."
+          }
+        },
+        {
+          "name": "Set record status",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"status\": { \"4\": true }\n}" },
+            "url": { "raw": "{{baseUrl}}/records/{{databox_id}}/{{record_id}}/setstatus", "host": ["{{baseUrl}}"], "path": ["records", "{{databox_id}}", "{{record_id}}", "setstatus"] },
+            "description": "Sets status-bit values on a record."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Stories",
+      "item": [
+        {
+          "name": "Create a story",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"base_id\": 1\n}" },
+            "url": { "raw": "{{baseUrl}}/stories/add", "host": ["{{baseUrl}}"], "path": ["stories", "add"] },
+            "description": "Creates a new story (a record grouping other records)."
+          }
+        },
+        {
+          "name": "Get a story",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/stories/{{databox_id}}/{{story_id}}", "host": ["{{baseUrl}}"], "path": ["stories", "{{databox_id}}", "{{story_id}}"] },
+            "description": "Returns a story and its child records."
+          }
+        },
+        {
+          "name": "Add records to a story",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"records\": [ { \"databox_id\": 1, \"record_id\": 5 } ]\n}" },
+            "url": { "raw": "{{baseUrl}}/stories/{{databox_id}}/{{story_id}}/addrecords", "host": ["{{baseUrl}}"], "path": ["stories", "{{databox_id}}", "{{story_id}}", "addrecords"] },
+            "description": "Adds records to a story."
+          }
+        },
+        {
+          "name": "Remove records from a story",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"records\": [ { \"databox_id\": 1, \"record_id\": 5 } ]\n}" },
+            "url": { "raw": "{{baseUrl}}/stories/{{databox_id}}/{{story_id}}/delrecords", "host": ["{{baseUrl}}"], "path": ["stories", "{{databox_id}}", "{{story_id}}", "delrecords"] },
+            "description": "Removes records from a story."
+          }
+        },
+        {
+          "name": "Set story cover",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"record_id\": 5\n}" },
+            "url": { "raw": "{{baseUrl}}/stories/{{databox_id}}/{{story_id}}/setcover", "host": ["{{baseUrl}}"], "path": ["stories", "{{databox_id}}", "{{story_id}}", "setcover"] },
+            "description": "Sets the cover image of a story from a child record."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Baskets",
+      "item": [
+        {
+          "name": "List baskets",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/baskets/list", "host": ["{{baseUrl}}"], "path": ["baskets", "list"] },
+            "description": "Returns the baskets owned by or shared with the user."
+          }
+        },
+        {
+          "name": "Create a basket",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"My basket\",\n  \"description\": \"Working set\"\n}" },
+            "url": { "raw": "{{baseUrl}}/baskets/add", "host": ["{{baseUrl}}"], "path": ["baskets", "add"] },
+            "description": "Creates a new basket."
+          }
+        },
+        {
+          "name": "Get basket content",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/baskets/{{basket_id}}/content", "host": ["{{baseUrl}}"], "path": ["baskets", "{{basket_id}}", "content"] },
+            "description": "Returns the records in a basket."
+          }
+        },
+        {
+          "name": "Rename a basket",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Renamed basket\"\n}" },
+            "url": { "raw": "{{baseUrl}}/baskets/{{basket_id}}/setname", "host": ["{{baseUrl}}"], "path": ["baskets", "{{basket_id}}", "setname"] },
+            "description": "Sets the name of a basket."
+          }
+        },
+        {
+          "name": "Set basket description",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"description\": \"Updated description\"\n}" },
+            "url": { "raw": "{{baseUrl}}/baskets/{{basket_id}}/setdescription", "host": ["{{baseUrl}}"], "path": ["baskets", "{{basket_id}}", "setdescription"] },
+            "description": "Sets the description of a basket."
+          }
+        },
+        {
+          "name": "Delete a basket",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/baskets/{{basket_id}}/delete", "host": ["{{baseUrl}}"], "path": ["baskets", "{{basket_id}}", "delete"] },
+            "description": "Deletes a basket."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Feeds",
+      "item": [
+        {
+          "name": "List feeds",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/feeds/list", "host": ["{{baseUrl}}"], "path": ["feeds", "list"] },
+            "description": "Returns the published feeds visible to the user."
+          }
+        },
+        {
+          "name": "Get feed content",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/feeds/{{feed_id}}/content", "host": ["{{baseUrl}}"], "path": ["feeds", "{{feed_id}}", "content"] },
+            "description": "Returns the entries of a single feed with their records."
+          }
+        },
+        {
+          "name": "Get aggregated feed content",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/feeds/aggregated/content", "host": ["{{baseUrl}}"], "path": ["feeds", "aggregated", "content"] },
+            "description": "Returns an aggregated view of entries across all visible feeds."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Quarantine",
+      "item": [
+        {
+          "name": "List quarantine items",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/quarantine/list", "host": ["{{baseUrl}}"], "path": ["quarantine", "list"] },
+            "description": "Lists items held in quarantine awaiting validation."
+          }
+        },
+        {
+          "name": "Get a quarantine item",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/quarantine/1", "host": ["{{baseUrl}}"], "path": ["quarantine", "1"] },
+            "description": "Returns a single quarantine item by id."
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Phraseanet
+providerId: phraseanet
+created: '2026-07-05'
+modified: '2026-07-05'
+reconciled: false
+tags:
+- Digital Asset Management
+- DAM
+- Open Source
+- Rate Limiting
+- Quotas
+description: >-
+  Phraseanet does not impose a fixed API rate limit. The public v1 API
+  documentation states explicitly that there is no rate limit in v1 - you may
+  make as many requests as you wish. Because Phraseanet is self-hosted, real
+  throughput is bounded by the resources of the instance you run (PHP-FPM
+  workers, database, and the Elasticsearch cluster that powers search) rather
+  than by a vendor-imposed per-minute cap. Operators can apply their own limits
+  at the reverse proxy or web server in front of Phraseanet.
+notes: >-
+  No numeric per-account or per-endpoint limit is published by Phraseanet.
+  Search-heavy workloads are gated by Elasticsearch capacity. Tune capacity and
+  any protective throttling at your own infrastructure layer.
+sources:
+- https://docs.phraseanet.com/4.1/en/Devel/API/V1/Overview.html
+- https://docs.phraseanet.com/4.1/en/Devel/API/V1.html
+- https://github.com/alchemy-fr/Phraseanet
+responseCodes:
+  throttled: 429
+limits:
+- name: API Requests (v1)
+  scope: instance
+  metric: requests
+  limit: no rate limit (per v1 documentation)
+  notes: v1 documentation states there is no rate limit; requests are unbounded by Phraseanet.
+- name: Self-Hosted Throughput
+  scope: deployment
+  metric: requests
+  limit: hardware-bound
+  notes: Constrained by your own PHP, database, and Elasticsearch capacity, not by Phraseanet.
+- name: Search Throughput
+  scope: instance
+  metric: queries
+  limit: elasticsearch-bound
+  notes: Search is served by Elasticsearch; throughput depends on cluster sizing.
+- name: Operator-Imposed Limits
+  scope: instance
+  metric: requests
+  limit: configurable
+  notes: Operators may add rate limiting at a reverse proxy or web server in front of Phraseanet.
+policies:
+- name: No Vendor Rate Limit
+  description: Phraseanet does not enforce an API rate limit in v1; throughput is a function of your own deployment.
+- name: Backoff Strategy
+  description: Clients should still implement exponential backoff with jitter and honor Retry-After should an operator-imposed proxy return 429.
+- name: Capacity Planning
+  description: Scale PHP workers, the database, and the Elasticsearch cluster to match expected API and search load.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,117 @@
+aid: phraseanet
+name: Phraseanet
+review:
+  question: Does Phraseanet expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-05'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. Phraseanet's documented public API is a
+    request/response REST API (v1/v2/v3) over HTTPS, secured with OAuth2. There
+    is no server-push transport (WebSocket or SSE) documented on Phraseanet's
+    API. Phraseanet does provide feeds and a webhook/notification mechanism for
+    downstream integration, but the developer-facing programmatic surface is
+    REST - there is nothing bidirectional or streaming to model as AsyncAPI.
+findings:
+  summary: |
+    Phraseanet does not publish a documented public WebSocket API. Phraseanet is
+    an open-source (GPL-v3) Digital Asset Management platform built in PHP by
+    Alchemy (github.com/alchemy-fr/Phraseanet). Its documented programmatic
+    surface is a RESTful API - v1 (stable 1.5.0) and v2 (2.0.0) documented at
+    docs.phraseanet.com, plus a newer v3 published on SwaggerHub
+    (alchemy-fr/phraseanet.api.v3) - authenticated with OAuth2. Requests are
+    GET/POST over HTTPS and responses are wrapped in an object with meta and
+    response fields, JSON by default. Resource areas include the authenticated
+    user (me), databoxes and their collections, databox status and metadata
+    structure, search, records (add/get/caption/metadatas/status/embed/related/
+    setcollection/delete), stories, baskets, feeds, and quarantine. No realtime,
+    bidirectional, or streaming WebSocket (ws:// or wss://) endpoint is
+    documented anywhere in Phraseanet's API documentation.
+  openSource: |
+    Phraseanet is open source under GPL-v3 and self-hostable
+    (github.com/alchemy-fr/Phraseanet). There is no single public shared API
+    endpoint - the API is served from each organization's own Phraseanet
+    instance. Alchemy, the company behind Phraseanet, sells managed hosting,
+    setup, training, support, and custom development around the open-source
+    core. Alchemy is also evolving Phraseanet toward a successor platform,
+    Phrasea.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://your-phraseanet-instance/api/v1
+      documented: true
+      note: >-
+        Documented v1/v2/v3 REST API secured with OAuth2. Base host is the
+        organization's own self-hosted Phraseanet instance.
+    - protocol: OAuth2
+      scheme: https
+      documented: true
+      note: >-
+        Authorization at /api/oauthv2/authorize and token at /api/oauthv2/token;
+        access token passed via Authorization header or oauth_token query param.
+    - protocol: Webhook
+      scheme: https
+      documented: true
+      note: >-
+        Phraseanet can push notifications/feeds to downstream systems, but this
+        is server-to-endpoint HTTP, not a WebSocket the client connects to.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: >-
+        No WebSocket endpoint is documented anywhere in Phraseanet's API
+        documentation as of the review date.
+  endpointsConfirmedRest:
+    - GET    https://your-phraseanet-instance/api/v1/me
+    - GET    https://your-phraseanet-instance/api/v1/databoxes/list
+    - GET    https://your-phraseanet-instance/api/v1/databoxes/{databox_id}/collections
+    - GET    https://your-phraseanet-instance/api/v1/databoxes/{databox_id}/status
+    - GET    https://your-phraseanet-instance/api/v1/databoxes/{databox_id}/metadatas
+    - POST   https://your-phraseanet-instance/api/v1/search
+    - POST   https://your-phraseanet-instance/api/v1/records/add
+    - GET    https://your-phraseanet-instance/api/v1/records/{databox_id}/{record_id}
+    - GET    https://your-phraseanet-instance/api/v1/records/{databox_id}/{record_id}/caption
+    - GET    https://your-phraseanet-instance/api/v1/records/{databox_id}/{record_id}/metadatas
+    - POST   https://your-phraseanet-instance/api/v1/records/{databox_id}/{record_id}/setmetadatas
+    - GET    https://your-phraseanet-instance/api/v1/records/{databox_id}/{record_id}/status
+    - POST   https://your-phraseanet-instance/api/v1/records/{databox_id}/{record_id}/setstatus
+    - GET    https://your-phraseanet-instance/api/v1/records/{databox_id}/{record_id}/embed
+    - GET    https://your-phraseanet-instance/api/v1/records/{databox_id}/{record_id}/related
+    - POST   https://your-phraseanet-instance/api/v1/records/{databox_id}/{record_id}/setcollection
+    - POST   https://your-phraseanet-instance/api/v1/stories/add
+    - GET    https://your-phraseanet-instance/api/v1/stories/{databox_id}/{story_id}
+    - GET    https://your-phraseanet-instance/api/v1/baskets/list
+    - GET    https://your-phraseanet-instance/api/v1/baskets/{basket_id}/content
+    - GET    https://your-phraseanet-instance/api/v1/feeds/list
+    - GET    https://your-phraseanet-instance/api/v1/quarantine/list
+sources:
+  - url: https://docs.phraseanet.com/4.1/en/Devel/API/V1.html
+    type: Documentation
+    note: API v1 route index - me, databoxes, collections, search, records, stories, baskets, feeds, quarantine.
+  - url: https://docs.phraseanet.com/4.1/en/Devel/API/V1/Overview.html
+    type: Documentation
+    note: v1 overview - GET/POST, JSON/YAML/JSONP, meta+response envelope, "no rate limit in v1", no public shared API.
+  - url: https://docs.phraseanet.com/4.1/en/Devel/API/V1/Authentication.html
+    type: Authentication
+    note: OAuth2 - register app for client id/secret, authorize + token endpoints under /api/oauthv2/.
+  - url: https://docs.phraseanet.com/4.1/en/Devel/API/V1/Route/Search.html
+    type: APIReference
+    note: POST /search returns records matching a query with filters and paging.
+  - url: https://docs.phraseanet.com/4.1/en/Devel/API/V1/Route/Databox/Collections.html
+    type: APIReference
+    note: Databox collections with base_id, collection_id, name, record count.
+  - url: https://app.swaggerhub.com/apis/alchemy-fr/phraseanet.api.v3/1.0.0-oas3
+    type: OpenAPI
+    note: Phraseanet API v3 published on SwaggerHub (login required to view full definition).
+  - url: https://github.com/alchemy-fr/Phraseanet
+    type: SourceCode
+    note: Open-source (GPL-v3) DAM by Alchemy, self-hostable; no WebSocket API in the codebase docs.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists. Phraseanet's documented public API is
+    request/response REST (v1/v2/v3) secured with OAuth2, served from each
+    organization's self-hosted instance. No AsyncAPI document was created
+    because there is no server-push transport on Phraseanet's own API to model.

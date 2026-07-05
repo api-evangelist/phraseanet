@@ -1,0 +1,234 @@
+aid: phraseanet
+url: https://raw.githubusercontent.com/api-evangelist/phraseanet/refs/heads/main/apis.yml
+name: Phraseanet
+kind: company
+description: Phraseanet is an open-source (GPL-v3) Digital Asset Management (DAM)
+  platform built in PHP and developed by Alchemy. It centralizes photos, videos,
+  documents, and other media with metadata management (Dublin Core mapping),
+  Elasticsearch-powered search, multi-resolution sub-definitions, thesaurus,
+  rights administration, stories, baskets, and feeds. Phraseanet exposes a
+  documented RESTful API (v1 and v2, with a newer v3 published on SwaggerHub)
+  secured with OAuth2, covering records, databoxes and collections, metadata,
+  search, stories, baskets, and feeds. Because Phraseanet is self-hosted, there
+  is no single public shared API endpoint - the API runs on each organization's
+  own Phraseanet instance. Alchemy provides commercial hosting, setup, training,
+  and support around the open-source core.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Digital Asset Management
+- DAM
+- Media
+- Metadata
+- Open Source
+- Search
+created: '2026-07-05'
+modified: '2026-07-05'
+specificationVersion: '0.19'
+apis:
+- aid: phraseanet:phraseanet-records-api
+  name: Phraseanet Records API
+  tags:
+  - Records
+  - Assets
+  - Media
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.phraseanet.com/4.1/en/Devel/API/V1/Route/Records/Record.html
+  baseURL: https://your-phraseanet-instance/api/v1
+  properties:
+  - url: https://docs.phraseanet.com/4.1/en/Devel/API/V1.html
+    type: Documentation
+  - url: https://docs.phraseanet.com/4.1/en/Devel/API/V1/Route/Records/Record.html
+    type: APIReference
+  - url: openapi/phraseanet-openapi.yml
+    type: OpenAPI
+  - url: collections/phraseanet.postman_collection.json
+    type: PostmanCollection
+  - url: collections/phraseanet.opencollection.json
+    type: OpenCollection
+  description: Add, retrieve, and manage individual media records (assets) within a
+    databox - get a record, add a record, fetch its caption, embedded
+    sub-definitions and related records, set its collection, and delete it.
+- aid: phraseanet:phraseanet-databoxes-collections-api
+  name: Phraseanet Databoxes and Collections API
+  tags:
+  - Databoxes
+  - Collections
+  - Structure
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.phraseanet.com/4.1/en/Devel/API/V1/Route/Databox/Collections.html
+  baseURL: https://your-phraseanet-instance/api/v1
+  properties:
+  - url: https://docs.phraseanet.com/4.1/en/Devel/API/V1/Route/Databox/List.html
+    type: Documentation
+  - url: https://docs.phraseanet.com/4.1/en/Devel/API/V1/Route/Databox/Collections.html
+    type: APIReference
+  - url: openapi/phraseanet-openapi.yml
+    type: OpenAPI
+  - url: collections/phraseanet.postman_collection.json
+    type: PostmanCollection
+  - url: collections/phraseanet.opencollection.json
+    type: OpenCollection
+  description: List the databoxes (data repositories) available to the authenticated
+    application and enumerate the collections within each databox, including
+    base_id, collection_id, name, and record counts, plus databox status
+    structure and terms of use.
+- aid: phraseanet:phraseanet-metadata-api
+  name: Phraseanet Metadata API
+  tags:
+  - Metadata
+  - Captions
+  - Fields
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.phraseanet.com/4.1/en/Devel/API/V1/Route/Records/Metadatas.html
+  baseURL: https://your-phraseanet-instance/api/v1
+  properties:
+  - url: https://docs.phraseanet.com/4.1/en/Devel/API/V1.html
+    type: Documentation
+  - url: https://docs.phraseanet.com/4.1/en/Devel/API/V1/Route/Records/SetMetadatas.html
+    type: APIReference
+  - url: openapi/phraseanet-openapi.yml
+    type: OpenAPI
+  - url: collections/phraseanet.postman_collection.json
+    type: PostmanCollection
+  - url: collections/phraseanet.opencollection.json
+    type: OpenCollection
+  description: Read and write descriptive metadata on records - fetch record
+    metadatas and captions, set metadata values against the databox metadata
+    structure, and update record status flags. Describes the databox metadata
+    structure that drives these fields.
+- aid: phraseanet:phraseanet-search-api
+  name: Phraseanet Search API
+  tags:
+  - Search
+  - Query
+  - Elasticsearch
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.phraseanet.com/4.1/en/Devel/API/V1/Route/Search.html
+  baseURL: https://your-phraseanet-instance/api/v1
+  properties:
+  - url: https://docs.phraseanet.com/4.1/en/Devel/API/V1/Route/Search.html
+    type: Documentation
+  - url: https://docs.phraseanet.com/4.1/en/Devel/API/V1/Route/Search.html
+    type: APIReference
+  - url: openapi/phraseanet-openapi.yml
+    type: OpenAPI
+  - url: collections/phraseanet.postman_collection.json
+    type: PostmanCollection
+  - url: collections/phraseanet.opencollection.json
+    type: OpenCollection
+  description: Elasticsearch-backed search across records and stories. Submit a query
+    with filters (databox ids, collections, status, record type, date, offset,
+    and per-page limits) and receive matching records with facets and paging
+    metadata.
+- aid: phraseanet:phraseanet-stories-api
+  name: Phraseanet Stories API
+  tags:
+  - Stories
+  - Grouping
+  - Records
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.phraseanet.com/4.1/en/Devel/API/V1/Route/Stories/Story.html
+  baseURL: https://your-phraseanet-instance/api/v1
+  properties:
+  - url: https://docs.phraseanet.com/4.1/en/Devel/API/V1.html
+    type: Documentation
+  - url: https://docs.phraseanet.com/4.1/en/Devel/API/V1/Route/Stories/Story.html
+    type: APIReference
+  - url: openapi/phraseanet-openapi.yml
+    type: OpenAPI
+  - url: collections/phraseanet.postman_collection.json
+    type: PostmanCollection
+  - url: collections/phraseanet.opencollection.json
+    type: OpenCollection
+  description: Manage stories - records that group other records. Create a story,
+    fetch it and its embedded sub-definitions, add and remove child records, and
+    set the story cover image.
+- aid: phraseanet:phraseanet-baskets-api
+  name: Phraseanet Baskets API
+  tags:
+  - Baskets
+  - Collections
+  - Curation
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.phraseanet.com/4.1/en/Devel/API/V1/Route/Baskets/List.html
+  baseURL: https://your-phraseanet-instance/api/v1
+  properties:
+  - url: https://docs.phraseanet.com/4.1/en/Devel/API/V1/Route/Baskets/List.html
+    type: Documentation
+  - url: https://docs.phraseanet.com/4.1/en/Devel/API/V1/Route/Baskets/Content.html
+    type: APIReference
+  - url: openapi/phraseanet-openapi.yml
+    type: OpenAPI
+  - url: collections/phraseanet.postman_collection.json
+    type: PostmanCollection
+  - url: collections/phraseanet.opencollection.json
+    type: OpenCollection
+  description: Create and manage baskets - user-curated working sets of records.
+    List baskets, create a basket, read its content, rename it, change its
+    description, and delete it.
+- aid: phraseanet:phraseanet-feeds-api
+  name: Phraseanet Feeds API
+  tags:
+  - Feeds
+  - Publications
+  - Syndication
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.phraseanet.com/4.1/en/Devel/API/V1/Route/Feeds/List.html
+  baseURL: https://your-phraseanet-instance/api/v1
+  properties:
+  - url: https://docs.phraseanet.com/4.1/en/Devel/API/V1.html
+    type: Documentation
+  - url: https://docs.phraseanet.com/4.1/en/Devel/API/V1/Route/Feeds/List.html
+    type: APIReference
+  - url: openapi/phraseanet-openapi.yml
+    type: OpenAPI
+  - url: collections/phraseanet.postman_collection.json
+    type: PostmanCollection
+  - url: collections/phraseanet.opencollection.json
+    type: OpenCollection
+  description: Read published feeds - list the feeds the authenticated user can see,
+    read the entries of a single feed, and read an aggregated view across all
+    feeds, each entry carrying its records and publication metadata.
+- aid: phraseanet:phraseanet-account-api
+  name: Phraseanet Account API
+  tags:
+  - Account
+  - Me
+  - Identity
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.phraseanet.com/4.1/en/Devel/API/V1/Authentication.html
+  baseURL: https://your-phraseanet-instance/api/v1
+  properties:
+  - url: https://docs.phraseanet.com/4.1/en/Devel/API/V1/Authentication.html
+    type: Authentication
+  - url: https://docs.phraseanet.com/4.1/en/Devel/API/V1/Overview.html
+    type: Documentation
+  - url: openapi/phraseanet-openapi.yml
+    type: OpenAPI
+  - url: collections/phraseanet.postman_collection.json
+    type: PostmanCollection
+  - url: collections/phraseanet.opencollection.json
+    type: OpenCollection
+  description: Retrieve the authenticated user (the "me" resource) including profile
+    details, collection access rights, field access, and sub-definition access.
+    Backed by the OAuth2 authorization and token endpoints under /api/oauthv2/.
+common:
+- type: GitHubOrganization
+  url: https://github.com/alchemy-fr
+- type: LinkedIn
+  url: https://www.linkedin.com/products/alchemy-sarl-phraseanet/
+- type: Website
+  url: https://www.phraseanet.com/
+- type: Documentation
+  url: https://docs.phraseanet.com/
+- type: SourceCode
+  url: https://github.com/alchemy-fr/Phraseanet
+- type: Plans
+  url: plans/phraseanet-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/phraseanet-rate-limits.yml
+- type: FinOps
+  url: finops/phraseanet-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

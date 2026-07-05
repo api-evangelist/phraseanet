@@ -1,0 +1,105 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Phraseanet
+providerId: phraseanet
+created: '2026-07-05'
+modified: '2026-07-05'
+reconciled: false
+tags:
+- Digital Asset Management
+- DAM
+- Open Source
+- Plans
+description: >-
+  Phraseanet is open-source (GPL-v3) and free to download, self-host, and use -
+  including its full REST API - with no license fee and no per-seat or per-call
+  charge from Alchemy. Because it is self-hosted, there is no metered API
+  pricing; your cost is the infrastructure you run it on. Alchemy, the company
+  behind Phraseanet, sells commercial services around the open-source core:
+  setup and integration, training, hosting, maintenance and support contracts,
+  and custom development. These are quoted per engagement rather than published
+  as fixed tiers; published references indicate setup/support packages starting
+  around EUR 5,000. Exact figures are not reconciled here.
+notes: >-
+  There is no single public shared Phraseanet API - each organization runs its
+  own instance. Verify current Alchemy service and hosting pricing by contacting
+  Alchemy via phraseanet.com. Figures below are indicative and must be confirmed
+  during reconciliation.
+sources:
+- https://www.phraseanet.com/
+- https://github.com/alchemy-fr/Phraseanet
+- https://docs.phraseanet.com/
+plans:
+- id: phraseanet-open-source
+  name: Open Source (Self-Hosted)
+  type: free
+  description: >-
+    The full Phraseanet DAM, GPL-v3 licensed and self-hostable. Includes the
+    production, admin, thesaurus, lightbox, and reporting interfaces, plus the
+    complete REST API (v1/v2/v3) with OAuth2. No license fee; there are no API
+    rate limits imposed by Phraseanet in v1.
+  entries:
+  - label: Self-Hosted API Usage
+    name: self_hosted_api_usage
+    type: usage
+    metric: requests
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: free (self-hosted; you provide infrastructure)
+    userMultiplied: false
+  elements:
+  - name: Full REST API (v1/v2/v3)
+  - name: OAuth2 Authentication
+  - name: Records, Collections, Metadata, Search
+  - name: Stories, Baskets, Feeds
+  - name: All Web Interfaces
+- id: phraseanet-hosting
+  name: Alchemy Hosting
+  type: subscription
+  description: >-
+    Managed hosting of a Phraseanet instance operated by Alchemy, sized to the
+    organization's asset library and workload. Quoted per engagement.
+  entries:
+  - label: Managed Hosting
+    name: managed_hosting
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: contact Alchemy for a quote
+    userMultiplied: false
+  elements:
+  - name: Managed Phraseanet Instance
+  - name: Infrastructure and Operations
+  - name: Backups and Monitoring
+- id: phraseanet-services
+  name: Alchemy Services and Support
+  type: enterprise
+  description: >-
+    Professional services around the open-source core - setup, integration,
+    training, maintenance and support contracts, and custom development.
+    Published references indicate packages starting around EUR 5,000.
+  entries:
+  - label: Services Engagement
+    name: services_engagement
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: from ~EUR 5,000 (indicative; contact Alchemy)
+    userMultiplied: false
+  elements:
+  - name: Setup and Integration
+  - name: Training
+  - name: Maintenance and Support
+  - name: Custom Development
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

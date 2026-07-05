@@ -1,0 +1,393 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Phraseanet API (v1)",
+    "version": "1.5.0",
+    "description": "Documented Phraseanet REST API v1 for the open-source (GPL-v3) DAM by Alchemy. Covers records, databoxes/collections, metadata, search, stories, baskets, and feeds, secured with OAuth2. Phraseanet is self-hosted; set the base URL to your own instance."
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{accessToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": { "name": "Account", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Get the authenticated user", "type": "http" },
+          "http": { "method": "GET", "url": "https://your-phraseanet-instance/api/v1/me" },
+          "docs": "Returns the authenticated user (me) with profile, collection access, field access, and sub-definition access."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Databoxes", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List databoxes", "type": "http" },
+          "http": { "method": "GET", "url": "https://your-phraseanet-instance/api/v1/databoxes/list" },
+          "docs": "Returns the databoxes available to the authenticated application."
+        },
+        {
+          "info": { "name": "List collections of a databox", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://your-phraseanet-instance/api/v1/databoxes/:databox_id/collections",
+            "params": [ { "name": "databox_id", "value": "1", "type": "path", "description": "The databox identifier." } ]
+          },
+          "docs": "Returns the collections on a databox with base_id, collection_id, name, and record count."
+        },
+        {
+          "info": { "name": "Get databox status structure", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://your-phraseanet-instance/api/v1/databoxes/:databox_id/status",
+            "params": [ { "name": "databox_id", "value": "1", "type": "path", "description": "The databox identifier." } ]
+          },
+          "docs": "Returns the status-bit structure of a databox."
+        },
+        {
+          "info": { "name": "Get databox metadata structure", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://your-phraseanet-instance/api/v1/databoxes/:databox_id/metadatas",
+            "params": [ { "name": "databox_id", "value": "1", "type": "path", "description": "The databox identifier." } ]
+          },
+          "docs": "Returns the metadata-field structure of a databox."
+        },
+        {
+          "info": { "name": "Get databox terms of use", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://your-phraseanet-instance/api/v1/databoxes/:databox_id/termsOfUse",
+            "params": [ { "name": "databox_id", "value": "1", "type": "path", "description": "The databox identifier." } ]
+          },
+          "docs": "Returns the terms of use of a databox."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Search", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Search records and stories", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://your-phraseanet-instance/api/v1/search",
+            "body": { "type": "json", "data": "{\n  \"query\": \"landscape\",\n  \"bases\": [1],\n  \"offset_start\": 0,\n  \"per_page\": 10,\n  \"search_type\": 0\n}" }
+          },
+          "docs": "Returns records matching a query with filters, facets, and paging metadata."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Records", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Add a record", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://your-phraseanet-instance/api/v1/records/add",
+            "body": { "type": "formdata", "data": "base_id, file" }
+          },
+          "docs": "Uploads a media file, creating a record (or a quarantine item when validation is required)."
+        },
+        {
+          "info": { "name": "Get a record", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://your-phraseanet-instance/api/v1/records/:databox_id/:record_id",
+            "params": [
+              { "name": "databox_id", "value": "1", "type": "path", "description": "The databox identifier." },
+              { "name": "record_id", "value": "1", "type": "path", "description": "The record identifier." }
+            ]
+          },
+          "docs": "Returns a single record."
+        },
+        {
+          "info": { "name": "Get record sub-definitions", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://your-phraseanet-instance/api/v1/records/:databox_id/:record_id/embed",
+            "params": [
+              { "name": "databox_id", "value": "1", "type": "path", "description": "The databox identifier." },
+              { "name": "record_id", "value": "1", "type": "path", "description": "The record identifier." }
+            ]
+          },
+          "docs": "Returns the embedded sub-definitions (thumbnail, preview, document) of a record."
+        },
+        {
+          "info": { "name": "Get related records", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://your-phraseanet-instance/api/v1/records/:databox_id/:record_id/related",
+            "params": [
+              { "name": "databox_id", "value": "1", "type": "path", "description": "The databox identifier." },
+              { "name": "record_id", "value": "1", "type": "path", "description": "The record identifier." }
+            ]
+          },
+          "docs": "Returns baskets and stories referencing this record."
+        },
+        {
+          "info": { "name": "Move a record to another collection", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://your-phraseanet-instance/api/v1/records/:databox_id/:record_id/setcollection",
+            "params": [
+              { "name": "databox_id", "value": "1", "type": "path", "description": "The databox identifier." },
+              { "name": "record_id", "value": "1", "type": "path", "description": "The record identifier." }
+            ],
+            "body": { "type": "json", "data": "{\n  \"base_id\": 2\n}" }
+          },
+          "docs": "Moves a record to a different collection."
+        },
+        {
+          "info": { "name": "Delete a record", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://your-phraseanet-instance/api/v1/records/:databox_id/:record_id/delete",
+            "params": [
+              { "name": "databox_id", "value": "1", "type": "path", "description": "The databox identifier." },
+              { "name": "record_id", "value": "1", "type": "path", "description": "The record identifier." }
+            ]
+          },
+          "docs": "Permanently deletes a record."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Metadata", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Get record caption", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://your-phraseanet-instance/api/v1/records/:databox_id/:record_id/caption",
+            "params": [
+              { "name": "databox_id", "value": "1", "type": "path", "description": "The databox identifier." },
+              { "name": "record_id", "value": "1", "type": "path", "description": "The record identifier." }
+            ]
+          },
+          "docs": "Returns the caption (display metadata) of a record."
+        },
+        {
+          "info": { "name": "Get record metadatas", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://your-phraseanet-instance/api/v1/records/:databox_id/:record_id/metadatas",
+            "params": [
+              { "name": "databox_id", "value": "1", "type": "path", "description": "The databox identifier." },
+              { "name": "record_id", "value": "1", "type": "path", "description": "The record identifier." }
+            ]
+          },
+          "docs": "Returns the raw metadata values of a record."
+        },
+        {
+          "info": { "name": "Set record metadatas", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://your-phraseanet-instance/api/v1/records/:databox_id/:record_id/setmetadatas",
+            "params": [
+              { "name": "databox_id", "value": "1", "type": "path", "description": "The databox identifier." },
+              { "name": "record_id", "value": "1", "type": "path", "description": "The record identifier." }
+            ],
+            "body": { "type": "json", "data": "{\n  \"metadatas\": [ { \"meta_struct_id\": 1, \"value\": \"New caption value\", \"append\": false } ]\n}" }
+          },
+          "docs": "Adds or modifies metadata on a record against the databox metadata structure."
+        },
+        {
+          "info": { "name": "Get record status", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://your-phraseanet-instance/api/v1/records/:databox_id/:record_id/status",
+            "params": [
+              { "name": "databox_id", "value": "1", "type": "path", "description": "The databox identifier." },
+              { "name": "record_id", "value": "1", "type": "path", "description": "The record identifier." }
+            ]
+          },
+          "docs": "Returns the status-bit values of a record."
+        },
+        {
+          "info": { "name": "Set record status", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://your-phraseanet-instance/api/v1/records/:databox_id/:record_id/setstatus",
+            "params": [
+              { "name": "databox_id", "value": "1", "type": "path", "description": "The databox identifier." },
+              { "name": "record_id", "value": "1", "type": "path", "description": "The record identifier." }
+            ],
+            "body": { "type": "json", "data": "{\n  \"status\": { \"4\": true }\n}" }
+          },
+          "docs": "Sets status-bit values on a record."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Stories", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Create a story", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://your-phraseanet-instance/api/v1/stories/add",
+            "body": { "type": "json", "data": "{\n  \"base_id\": 1\n}" }
+          },
+          "docs": "Creates a new story (a record grouping other records)."
+        },
+        {
+          "info": { "name": "Get a story", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://your-phraseanet-instance/api/v1/stories/:databox_id/:story_id",
+            "params": [
+              { "name": "databox_id", "value": "1", "type": "path", "description": "The databox identifier." },
+              { "name": "story_id", "value": "1", "type": "path", "description": "The story identifier." }
+            ]
+          },
+          "docs": "Returns a story and its child records."
+        },
+        {
+          "info": { "name": "Add records to a story", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://your-phraseanet-instance/api/v1/stories/:databox_id/:story_id/addrecords",
+            "params": [
+              { "name": "databox_id", "value": "1", "type": "path", "description": "The databox identifier." },
+              { "name": "story_id", "value": "1", "type": "path", "description": "The story identifier." }
+            ],
+            "body": { "type": "json", "data": "{\n  \"records\": [ { \"databox_id\": 1, \"record_id\": 5 } ]\n}" }
+          },
+          "docs": "Adds records to a story."
+        },
+        {
+          "info": { "name": "Remove records from a story", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://your-phraseanet-instance/api/v1/stories/:databox_id/:story_id/delrecords",
+            "params": [
+              { "name": "databox_id", "value": "1", "type": "path", "description": "The databox identifier." },
+              { "name": "story_id", "value": "1", "type": "path", "description": "The story identifier." }
+            ],
+            "body": { "type": "json", "data": "{\n  \"records\": [ { \"databox_id\": 1, \"record_id\": 5 } ]\n}" }
+          },
+          "docs": "Removes records from a story."
+        },
+        {
+          "info": { "name": "Set story cover", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://your-phraseanet-instance/api/v1/stories/:databox_id/:story_id/setcover",
+            "params": [
+              { "name": "databox_id", "value": "1", "type": "path", "description": "The databox identifier." },
+              { "name": "story_id", "value": "1", "type": "path", "description": "The story identifier." }
+            ],
+            "body": { "type": "json", "data": "{\n  \"record_id\": 5\n}" }
+          },
+          "docs": "Sets the cover image of a story from a child record."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Baskets", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List baskets", "type": "http" },
+          "http": { "method": "GET", "url": "https://your-phraseanet-instance/api/v1/baskets/list" },
+          "docs": "Returns the baskets owned by or shared with the user."
+        },
+        {
+          "info": { "name": "Create a basket", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://your-phraseanet-instance/api/v1/baskets/add",
+            "body": { "type": "json", "data": "{\n  \"name\": \"My basket\",\n  \"description\": \"Working set\"\n}" }
+          },
+          "docs": "Creates a new basket."
+        },
+        {
+          "info": { "name": "Get basket content", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://your-phraseanet-instance/api/v1/baskets/:basket_id/content",
+            "params": [ { "name": "basket_id", "value": "1", "type": "path", "description": "The basket identifier." } ]
+          },
+          "docs": "Returns the records in a basket."
+        },
+        {
+          "info": { "name": "Rename a basket", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://your-phraseanet-instance/api/v1/baskets/:basket_id/setname",
+            "params": [ { "name": "basket_id", "value": "1", "type": "path", "description": "The basket identifier." } ],
+            "body": { "type": "json", "data": "{\n  \"name\": \"Renamed basket\"\n}" }
+          },
+          "docs": "Sets the name of a basket."
+        },
+        {
+          "info": { "name": "Set basket description", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://your-phraseanet-instance/api/v1/baskets/:basket_id/setdescription",
+            "params": [ { "name": "basket_id", "value": "1", "type": "path", "description": "The basket identifier." } ],
+            "body": { "type": "json", "data": "{\n  \"description\": \"Updated description\"\n}" }
+          },
+          "docs": "Sets the description of a basket."
+        },
+        {
+          "info": { "name": "Delete a basket", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://your-phraseanet-instance/api/v1/baskets/:basket_id/delete",
+            "params": [ { "name": "basket_id", "value": "1", "type": "path", "description": "The basket identifier." } ]
+          },
+          "docs": "Deletes a basket."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Feeds", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List feeds", "type": "http" },
+          "http": { "method": "GET", "url": "https://your-phraseanet-instance/api/v1/feeds/list" },
+          "docs": "Returns the published feeds visible to the user."
+        },
+        {
+          "info": { "name": "Get feed content", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://your-phraseanet-instance/api/v1/feeds/:feed_id/content",
+            "params": [ { "name": "feed_id", "value": "1", "type": "path", "description": "The feed identifier." } ]
+          },
+          "docs": "Returns the entries of a single feed with their records."
+        },
+        {
+          "info": { "name": "Get aggregated feed content", "type": "http" },
+          "http": { "method": "GET", "url": "https://your-phraseanet-instance/api/v1/feeds/aggregated/content" },
+          "docs": "Returns an aggregated view of entries across all visible feeds."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Quarantine", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List quarantine items", "type": "http" },
+          "http": { "method": "GET", "url": "https://your-phraseanet-instance/api/v1/quarantine/list" },
+          "docs": "Lists items held in quarantine awaiting validation."
+        },
+        {
+          "info": { "name": "Get a quarantine item", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://your-phraseanet-instance/api/v1/quarantine/:quarantine_item_id",
+            "params": [ { "name": "quarantine_item_id", "value": "1", "type": "path", "description": "The quarantine item identifier." } ]
+          },
+          "docs": "Returns a single quarantine item by id."
+        }
+      ]
+    }
+  ]
+}
