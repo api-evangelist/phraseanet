@@ -213,6 +213,10 @@ apis:
     details, collection access rights, field access, and sub-definition access.
     Backed by the OAuth2 authorization and token endpoints under /api/oauthv2/.
 common:
+- type: Authentication
+  url: authentication/phraseanet-authentication.yml
+- type: OAuthScopes
+  url: scopes/phraseanet-scopes.yml
 - type: GitHubOrganization
   url: https://github.com/alchemy-fr
 - type: LinkedIn

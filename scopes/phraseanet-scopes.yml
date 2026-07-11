@@ -1,0 +1,18 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/phraseanet-openapi.yml
+docs: https://docs.phraseanet.com/4.1/en/Devel/API/V1/Authentication.html
+note: Phraseanet's OAuth2 does not use or document scopes - access is governed by
+  the authenticated user's rights and collection access within the self-hosted
+  Phraseanet instance, with application registration and user-revocable access
+  instead of scope grants
+  (https://docs.phraseanet.com/4.1/en/Devel/API/V1/Authentication.html).
+schemes:
+- name: oauth2
+  source: openapi/phraseanet-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://your-phraseanet-instance/api/oauthv2/authorize
+    tokenUrl: https://your-phraseanet-instance/api/oauthv2/token
+  description: OAuth2. Register an application in Phraseanet to obtain a client id and secret.
+scopes: []
