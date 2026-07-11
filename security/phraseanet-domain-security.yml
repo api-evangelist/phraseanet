@@ -1,0 +1,20 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.phraseanet.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 29 06:06:49 2026 GMT
+  hsts: false
+- host: docs.phraseanet.com
+  https: true
+  tls_version: TLSv1.2
+  cert_expires: Sep 22 01:02:07 2026 GMT
+  hsts: false
+domains:
+- domain: phraseanet.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: false

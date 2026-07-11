@@ -1,0 +1,29 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/phraseanet-openapi.yml
+summary:
+  types:
+  - apiKey
+  - oauth2
+  api_key_in:
+  - query
+  oauth2_flows:
+  - authorizationCode
+schemes:
+- name: oauth2
+  type: oauth2
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://your-phraseanet-instance/api/oauthv2/authorize
+    tokenUrl: https://your-phraseanet-instance/api/oauthv2/token
+    scopes: 0
+  description: OAuth2. Register an application in Phraseanet to obtain a client id and secret.
+  sources:
+  - openapi/phraseanet-openapi.yml
+- name: oauthTokenParam
+  type: apiKey
+  in: query
+  parameter: oauth_token
+  description: OAuth2 access token passed as the oauth_token query parameter.
+  sources:
+  - openapi/phraseanet-openapi.yml
