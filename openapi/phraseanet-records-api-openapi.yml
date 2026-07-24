@@ -1,0 +1,215 @@
+openapi: 3.0.3
+info:
+  title: Phraseanet API (v1) Account Records API
+  description: Phraseanet is an open-source (GPL-v3) Digital Asset Management (DAM) platform by Alchemy. This document models the documented Phraseanet REST API v1, which is secured with OAuth2 and covers records, databoxes and collections, metadata, search, stories, baskets, and feeds. Phraseanet is self-hosted, so the API is served from each organization's own instance - there is no single public shared endpoint. Replace the server host with your Phraseanet instance. All responses are wrapped in an object with `meta` and `response` fields and are JSON by default. A newer API v3 is published on SwaggerHub (alchemy-fr/phraseanet.api.v3). Endpoints here are grounded in the public v1 route documentation; request and response bodies are honestly modeled and should be confirmed against your Phraseanet version.
+  version: 1.5.0
+  contact:
+    name: Alchemy - Phraseanet
+    url: https://www.phraseanet.com/
+  license:
+    name: GPL-3.0
+    url: https://github.com/alchemy-fr/Phraseanet/blob/4.1/LICENSE
+servers:
+- url: https://{host}/api/v1
+  description: Phraseanet instance (self-hosted)
+  variables:
+    host:
+      default: your-phraseanet-instance
+      description: Hostname of your Phraseanet installation.
+security:
+- oauth2: []
+- oauthTokenParam: []
+tags:
+- name: Records
+  description: Individual media records (assets) within a databox.
+paths:
+  /records/add:
+    post:
+      operationId: addRecord
+      tags:
+      - Records
+      summary: Add a record
+      description: Uploads a new media file into a collection, creating a record (or placing it in quarantine when validation is required).
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                base_id:
+                  type: integer
+                  description: Destination collection base_id.
+                file:
+                  type: string
+                  format: binary
+                  description: The media file to upload.
+      responses:
+        '200':
+          description: The created record or quarantine item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /records/{databox_id}/{record_id}:
+    get:
+      operationId: getRecord
+      tags:
+      - Records
+      summary: Get a record
+      description: Returns a single record identified by its databox and record id.
+      parameters:
+      - $ref: '#/components/parameters/DataboxId'
+      - $ref: '#/components/parameters/RecordId'
+      responses:
+        '200':
+          description: The record.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /records/{databox_id}/{record_id}/embed:
+    get:
+      operationId: getRecordEmbed
+      tags:
+      - Records
+      summary: Get record sub-definitions
+      description: Returns the embedded sub-definitions (thumbnail, preview, document, and other resolutions) generated for a record.
+      parameters:
+      - $ref: '#/components/parameters/DataboxId'
+      - $ref: '#/components/parameters/RecordId'
+      responses:
+        '200':
+          description: The record sub-definitions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /records/{databox_id}/{record_id}/related:
+    get:
+      operationId: getRecordRelated
+      tags:
+      - Records
+      summary: Get related records
+      description: Returns baskets and stories that reference this record.
+      parameters:
+      - $ref: '#/components/parameters/DataboxId'
+      - $ref: '#/components/parameters/RecordId'
+      responses:
+        '200':
+          description: Related baskets and stories.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /records/{databox_id}/{record_id}/setcollection:
+    post:
+      operationId: setRecordCollection
+      tags:
+      - Records
+      summary: Move a record to another collection
+      description: Moves a record to a different collection within reach of the user.
+      parameters:
+      - $ref: '#/components/parameters/DataboxId'
+      - $ref: '#/components/parameters/RecordId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                base_id:
+                  type: integer
+                  description: Destination collection base_id.
+      responses:
+        '200':
+          description: The updated record.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /records/{databox_id}/{record_id}/delete:
+    post:
+      operationId: deleteRecord
+      tags:
+      - Records
+      summary: Delete a record
+      description: Permanently deletes a record from its databox.
+      parameters:
+      - $ref: '#/components/parameters/DataboxId'
+      - $ref: '#/components/parameters/RecordId'
+      responses:
+        '200':
+          description: Deletion result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+components:
+  parameters:
+    DataboxId:
+      name: databox_id
+      in: path
+      required: true
+      description: The databox identifier.
+      schema:
+        type: integer
+    RecordId:
+      name: record_id
+      in: path
+      required: true
+      description: The record identifier within the databox.
+      schema:
+        type: integer
+  schemas:
+    Envelope:
+      type: object
+      description: Standard Phraseanet response wrapper. Every response contains a meta object and a response payload.
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        response:
+          type: object
+          description: The endpoint-specific payload.
+    Meta:
+      type: object
+      description: Response envelope metadata.
+      properties:
+        api_version:
+          type: string
+        request:
+          type: string
+        response_time:
+          type: string
+        http_code:
+          type: integer
+        error_type:
+          type: string
+          nullable: true
+        error_message:
+          type: string
+          nullable: true
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Envelope'
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth2. Register an application in Phraseanet to obtain a client id and secret.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://your-phraseanet-instance/api/oauthv2/authorize
+          tokenUrl: https://your-phraseanet-instance/api/oauthv2/token
+          scopes: {}
+    oauthTokenParam:
+      type: apiKey
+      in: query
+      name: oauth_token
+      description: OAuth2 access token passed as the oauth_token query parameter.

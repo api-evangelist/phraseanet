@@ -1,0 +1,125 @@
+openapi: 3.0.3
+info:
+  title: Phraseanet API (v1) Account Search API
+  description: Phraseanet is an open-source (GPL-v3) Digital Asset Management (DAM) platform by Alchemy. This document models the documented Phraseanet REST API v1, which is secured with OAuth2 and covers records, databoxes and collections, metadata, search, stories, baskets, and feeds. Phraseanet is self-hosted, so the API is served from each organization's own instance - there is no single public shared endpoint. Replace the server host with your Phraseanet instance. All responses are wrapped in an object with `meta` and `response` fields and are JSON by default. A newer API v3 is published on SwaggerHub (alchemy-fr/phraseanet.api.v3). Endpoints here are grounded in the public v1 route documentation; request and response bodies are honestly modeled and should be confirmed against your Phraseanet version.
+  version: 1.5.0
+  contact:
+    name: Alchemy - Phraseanet
+    url: https://www.phraseanet.com/
+  license:
+    name: GPL-3.0
+    url: https://github.com/alchemy-fr/Phraseanet/blob/4.1/LICENSE
+servers:
+- url: https://{host}/api/v1
+  description: Phraseanet instance (self-hosted)
+  variables:
+    host:
+      default: your-phraseanet-instance
+      description: Hostname of your Phraseanet installation.
+security:
+- oauth2: []
+- oauthTokenParam: []
+tags:
+- name: Search
+  description: Elasticsearch-backed search across records and stories.
+paths:
+  /search:
+    post:
+      operationId: search
+      tags:
+      - Search
+      summary: Search records and stories
+      description: Returns the records (and stories) matching a query. Filters include databox and collection ids, status, record type, date range, offset, and per-page limits. Backed by Elasticsearch.
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          description: Matching records with facets and paging metadata.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid OAuth2 token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Envelope'
+  schemas:
+    Meta:
+      type: object
+      description: Response envelope metadata.
+      properties:
+        api_version:
+          type: string
+        request:
+          type: string
+        response_time:
+          type: string
+        http_code:
+          type: integer
+        error_type:
+          type: string
+          nullable: true
+        error_message:
+          type: string
+          nullable: true
+    Envelope:
+      type: object
+      description: Standard Phraseanet response wrapper. Every response contains a meta object and a response payload.
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        response:
+          type: object
+          description: The endpoint-specific payload.
+    SearchRequest:
+      type: object
+      description: Search parameters.
+      properties:
+        query:
+          type: string
+          description: The full-text query string.
+        bases:
+          type: array
+          description: Databox / collection ids to search within.
+          items:
+            type: integer
+        offset_start:
+          type: integer
+          default: 0
+        per_page:
+          type: integer
+          default: 10
+        search_type:
+          type: integer
+          description: 0 for records, 1 for stories.
+        record_type:
+          type: string
+          description: Filter by record type (image, video, audio, document).
+        status:
+          type: object
+          additionalProperties:
+            type: boolean
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth2. Register an application in Phraseanet to obtain a client id and secret.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://your-phraseanet-instance/api/oauthv2/authorize
+          tokenUrl: https://your-phraseanet-instance/api/oauthv2/token
+          scopes: {}
+    oauthTokenParam:
+      type: apiKey
+      in: query
+      name: oauth_token
+      description: OAuth2 access token passed as the oauth_token query parameter.

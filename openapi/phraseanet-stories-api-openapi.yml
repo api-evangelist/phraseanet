@@ -1,0 +1,194 @@
+openapi: 3.0.3
+info:
+  title: Phraseanet API (v1) Account Stories API
+  description: Phraseanet is an open-source (GPL-v3) Digital Asset Management (DAM) platform by Alchemy. This document models the documented Phraseanet REST API v1, which is secured with OAuth2 and covers records, databoxes and collections, metadata, search, stories, baskets, and feeds. Phraseanet is self-hosted, so the API is served from each organization's own instance - there is no single public shared endpoint. Replace the server host with your Phraseanet instance. All responses are wrapped in an object with `meta` and `response` fields and are JSON by default. A newer API v3 is published on SwaggerHub (alchemy-fr/phraseanet.api.v3). Endpoints here are grounded in the public v1 route documentation; request and response bodies are honestly modeled and should be confirmed against your Phraseanet version.
+  version: 1.5.0
+  contact:
+    name: Alchemy - Phraseanet
+    url: https://www.phraseanet.com/
+  license:
+    name: GPL-3.0
+    url: https://github.com/alchemy-fr/Phraseanet/blob/4.1/LICENSE
+servers:
+- url: https://{host}/api/v1
+  description: Phraseanet instance (self-hosted)
+  variables:
+    host:
+      default: your-phraseanet-instance
+      description: Hostname of your Phraseanet installation.
+security:
+- oauth2: []
+- oauthTokenParam: []
+tags:
+- name: Stories
+  description: Records that group other records.
+paths:
+  /stories/add:
+    post:
+      operationId: addStory
+      tags:
+      - Stories
+      summary: Create a story
+      description: Creates a new story (a record that groups other records).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                base_id:
+                  type: integer
+      responses:
+        '200':
+          description: The created story.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /stories/{databox_id}/{story_id}:
+    get:
+      operationId: getStory
+      tags:
+      - Stories
+      summary: Get a story
+      description: Returns a single story and its child records.
+      parameters:
+      - $ref: '#/components/parameters/DataboxId'
+      - $ref: '#/components/parameters/StoryId'
+      responses:
+        '200':
+          description: The story.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /stories/{databox_id}/{story_id}/addrecords:
+    post:
+      operationId: addRecordsToStory
+      tags:
+      - Stories
+      summary: Add records to a story
+      description: Adds one or more records to a story.
+      parameters:
+      - $ref: '#/components/parameters/DataboxId'
+      - $ref: '#/components/parameters/StoryId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                records:
+                  type: array
+                  items:
+                    type: object
+      responses:
+        '200':
+          description: The updated story.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /stories/{databox_id}/{story_id}/delrecords:
+    post:
+      operationId: removeRecordsFromStory
+      tags:
+      - Stories
+      summary: Remove records from a story
+      description: Removes one or more records from a story.
+      parameters:
+      - $ref: '#/components/parameters/DataboxId'
+      - $ref: '#/components/parameters/StoryId'
+      responses:
+        '200':
+          description: The updated story.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /stories/{databox_id}/{story_id}/setcover:
+    post:
+      operationId: setStoryCover
+      tags:
+      - Stories
+      summary: Set story cover
+      description: Sets the cover image of a story from one of its child records.
+      parameters:
+      - $ref: '#/components/parameters/DataboxId'
+      - $ref: '#/components/parameters/StoryId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                record_id:
+                  type: integer
+      responses:
+        '200':
+          description: The updated story.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+components:
+  parameters:
+    StoryId:
+      name: story_id
+      in: path
+      required: true
+      description: The story identifier within the databox.
+      schema:
+        type: integer
+    DataboxId:
+      name: databox_id
+      in: path
+      required: true
+      description: The databox identifier.
+      schema:
+        type: integer
+  schemas:
+    Meta:
+      type: object
+      description: Response envelope metadata.
+      properties:
+        api_version:
+          type: string
+        request:
+          type: string
+        response_time:
+          type: string
+        http_code:
+          type: integer
+        error_type:
+          type: string
+          nullable: true
+        error_message:
+          type: string
+          nullable: true
+    Envelope:
+      type: object
+      description: Standard Phraseanet response wrapper. Every response contains a meta object and a response payload.
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        response:
+          type: object
+          description: The endpoint-specific payload.
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth2. Register an application in Phraseanet to obtain a client id and secret.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://your-phraseanet-instance/api/oauthv2/authorize
+          tokenUrl: https://your-phraseanet-instance/api/oauthv2/token
+          scopes: {}
+    oauthTokenParam:
+      type: apiKey
+      in: query
+      name: oauth_token
+      description: OAuth2 access token passed as the oauth_token query parameter.

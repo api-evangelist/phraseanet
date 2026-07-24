@@ -1,0 +1,165 @@
+openapi: 3.0.3
+info:
+  title: Phraseanet API (v1) Account Databoxes API
+  description: Phraseanet is an open-source (GPL-v3) Digital Asset Management (DAM) platform by Alchemy. This document models the documented Phraseanet REST API v1, which is secured with OAuth2 and covers records, databoxes and collections, metadata, search, stories, baskets, and feeds. Phraseanet is self-hosted, so the API is served from each organization's own instance - there is no single public shared endpoint. Replace the server host with your Phraseanet instance. All responses are wrapped in an object with `meta` and `response` fields and are JSON by default. A newer API v3 is published on SwaggerHub (alchemy-fr/phraseanet.api.v3). Endpoints here are grounded in the public v1 route documentation; request and response bodies are honestly modeled and should be confirmed against your Phraseanet version.
+  version: 1.5.0
+  contact:
+    name: Alchemy - Phraseanet
+    url: https://www.phraseanet.com/
+  license:
+    name: GPL-3.0
+    url: https://github.com/alchemy-fr/Phraseanet/blob/4.1/LICENSE
+servers:
+- url: https://{host}/api/v1
+  description: Phraseanet instance (self-hosted)
+  variables:
+    host:
+      default: your-phraseanet-instance
+      description: Hostname of your Phraseanet installation.
+security:
+- oauth2: []
+- oauthTokenParam: []
+tags:
+- name: Databoxes
+  description: Databoxes, their collections, status structure, and metadata structure.
+paths:
+  /databoxes/list:
+    get:
+      operationId: listDataboxes
+      tags:
+      - Databoxes
+      summary: List databoxes
+      description: Returns the databoxes available to the authenticated application.
+      responses:
+        '200':
+          description: A list of databoxes.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /databoxes/{databox_id}/collections:
+    get:
+      operationId: listDataboxCollections
+      tags:
+      - Databoxes
+      summary: List collections of a databox
+      description: Returns the collections available on the specified databox, each with base_id, collection_id, name, and record count.
+      parameters:
+      - $ref: '#/components/parameters/DataboxId'
+      responses:
+        '200':
+          description: A list of collections.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /databoxes/{databox_id}/status:
+    get:
+      operationId: getDataboxStatus
+      tags:
+      - Databoxes
+      summary: Get databox status structure
+      description: Returns the status-bit structure defined on the databox.
+      parameters:
+      - $ref: '#/components/parameters/DataboxId'
+      responses:
+        '200':
+          description: The status structure.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /databoxes/{databox_id}/metadatas:
+    get:
+      operationId: getDataboxMetadatas
+      tags:
+      - Databoxes
+      summary: Get databox metadata structure
+      description: Returns the metadata-field structure of the databox that drives record captions and metadata values.
+      parameters:
+      - $ref: '#/components/parameters/DataboxId'
+      responses:
+        '200':
+          description: The metadata structure.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /databoxes/{databox_id}/termsOfUse:
+    get:
+      operationId: getDataboxTermsOfUse
+      tags:
+      - Databoxes
+      summary: Get databox terms of use
+      description: Returns the terms of use associated with the databox.
+      parameters:
+      - $ref: '#/components/parameters/DataboxId'
+      responses:
+        '200':
+          description: The terms of use.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+components:
+  parameters:
+    DataboxId:
+      name: databox_id
+      in: path
+      required: true
+      description: The databox identifier.
+      schema:
+        type: integer
+  responses:
+    Unauthorized:
+      description: Missing or invalid OAuth2 token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Envelope'
+  schemas:
+    Meta:
+      type: object
+      description: Response envelope metadata.
+      properties:
+        api_version:
+          type: string
+        request:
+          type: string
+        response_time:
+          type: string
+        http_code:
+          type: integer
+        error_type:
+          type: string
+          nullable: true
+        error_message:
+          type: string
+          nullable: true
+    Envelope:
+      type: object
+      description: Standard Phraseanet response wrapper. Every response contains a meta object and a response payload.
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        response:
+          type: object
+          description: The endpoint-specific payload.
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth2. Register an application in Phraseanet to obtain a client id and secret.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://your-phraseanet-instance/api/oauthv2/authorize
+          tokenUrl: https://your-phraseanet-instance/api/oauthv2/token
+          scopes: {}
+    oauthTokenParam:
+      type: apiKey
+      in: query
+      name: oauth_token
+      description: OAuth2 access token passed as the oauth_token query parameter.
