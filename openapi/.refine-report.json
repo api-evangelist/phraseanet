@@ -1,0 +1,30 @@
+{
+  "provider": "phraseanet",
+  "sources": [
+    "phraseanet-account-api-openapi.yml",
+    "phraseanet-baskets-api-openapi.yml",
+    "phraseanet-databoxes-api-openapi.yml",
+    "phraseanet-feeds-api-openapi.yml",
+    "phraseanet-metadata-api-openapi.yml",
+    "phraseanet-quarantine-api-openapi.yml",
+    "phraseanet-records-api-openapi.yml",
+    "phraseanet-search-api-openapi.yml",
+    "phraseanet-stories-api-openapi.yml"
+  ],
+  "outputs": [
+    "phraseanet-account-api-openapi.yml",
+    "phraseanet-baskets-api-openapi.yml",
+    "phraseanet-databoxes-api-openapi.yml",
+    "phraseanet-feeds-api-openapi.yml",
+    "phraseanet-metadata-api-openapi.yml",
+    "phraseanet-quarantine-api-openapi.yml",
+    "phraseanet-records-api-openapi.yml",
+    "phraseanet-search-api-openapi.yml",
+    "phraseanet-stories-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
