@@ -1,0 +1,140 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Phraseanet API (v1) Account Baskets API",
+    "version": "1.5.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://your-phraseanet-instance/api/oauthv2/authorize",
+      "accessTokenUrl": "https://your-phraseanet-instance/api/oauthv2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Baskets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List baskets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/api/v1/baskets/list"
+          },
+          "docs": "Returns the baskets owned by or shared with the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Create a basket",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/api/v1/baskets/add",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new basket, optionally seeded with records."
+        },
+        {
+          "info": {
+            "name": "Get basket content",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/api/v1/baskets/:basket_id/content",
+            "params": [
+              {
+                "name": "basket_id",
+                "value": "",
+                "type": "path",
+                "description": "The basket identifier."
+              }
+            ]
+          },
+          "docs": "Returns the records contained in a basket."
+        },
+        {
+          "info": {
+            "name": "Rename a basket",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/api/v1/baskets/:basket_id/setname",
+            "params": [
+              {
+                "name": "basket_id",
+                "value": "",
+                "type": "path",
+                "description": "The basket identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets the name of a basket."
+        },
+        {
+          "info": {
+            "name": "Set basket description",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/api/v1/baskets/:basket_id/setdescription",
+            "params": [
+              {
+                "name": "basket_id",
+                "value": "",
+                "type": "path",
+                "description": "The basket identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets the description of a basket."
+        },
+        {
+          "info": {
+            "name": "Delete a basket",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/api/v1/baskets/:basket_id/delete",
+            "params": [
+              {
+                "name": "basket_id",
+                "value": "",
+                "type": "path",
+                "description": "The basket identifier."
+              }
+            ]
+          },
+          "docs": "Deletes a basket."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

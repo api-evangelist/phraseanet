@@ -1,0 +1,717 @@
+{
+  "item": [
+    {
+      "id": "0e17c9f2-b968-443b-abd5-dea28f456d7b",
+      "name": "Stories",
+      "description": {
+        "content": "Records that group other records.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "82c6af4b-67ad-4a1e-8a73-a6344c44897c",
+          "name": "Create a story",
+          "request": {
+            "name": "Create a story",
+            "description": {
+              "content": "Creates a new story (a record that groups other records).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "stories",
+                "add"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname of your Phraseanet installation.",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"base_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9d26aad2-2f47-43ab-b73f-770527ff277d",
+              "name": "The created story.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stories",
+                    "add"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of your Phraseanet installation.",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"base_id\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"api_version\": \"string\",\n    \"request\": \"string\",\n    \"response_time\": \"string\",\n    \"http_code\": 3423,\n    \"error_type\": \"string\",\n    \"error_message\": \"string\"\n  },\n  \"response\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6e940d8a-3ed6-4564-84a2-fda64a252ab4",
+          "name": "Get a story",
+          "request": {
+            "name": "Get a story",
+            "description": {
+              "content": "Returns a single story and its child records.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "stories",
+                ":databox_id",
+                ":story_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "databox_id",
+                  "description": "(Required) The databox identifier."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "story_id",
+                  "description": "(Required) The story identifier within the databox."
+                },
+                {
+                  "description": "Hostname of your Phraseanet installation.",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "01f7e741-2050-4b54-bb3f-5b444d2f4703",
+              "name": "The story.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stories",
+                    ":databox_id",
+                    ":story_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "databox_id",
+                      "description": "(Required) The databox identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "story_id",
+                      "description": "(Required) The story identifier within the databox."
+                    },
+                    {
+                      "description": "Hostname of your Phraseanet installation.",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"api_version\": \"string\",\n    \"request\": \"string\",\n    \"response_time\": \"string\",\n    \"http_code\": 3423,\n    \"error_type\": \"string\",\n    \"error_message\": \"string\"\n  },\n  \"response\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e486d28b-f0ac-43dd-9d35-a23ded8049a7",
+          "name": "Add records to a story",
+          "request": {
+            "name": "Add records to a story",
+            "description": {
+              "content": "Adds one or more records to a story.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "stories",
+                ":databox_id",
+                ":story_id",
+                "addrecords"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "databox_id",
+                  "description": "(Required) The databox identifier."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "story_id",
+                  "description": "(Required) The story identifier within the databox."
+                },
+                {
+                  "description": "Hostname of your Phraseanet installation.",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"records\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "68bbb313-910d-4568-a068-3923a7952225",
+              "name": "The updated story.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stories",
+                    ":databox_id",
+                    ":story_id",
+                    "addrecords"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "databox_id",
+                      "description": "(Required) The databox identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "story_id",
+                      "description": "(Required) The story identifier within the databox."
+                    },
+                    {
+                      "description": "Hostname of your Phraseanet installation.",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"records\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"api_version\": \"string\",\n    \"request\": \"string\",\n    \"response_time\": \"string\",\n    \"http_code\": 3423,\n    \"error_type\": \"string\",\n    \"error_message\": \"string\"\n  },\n  \"response\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f0500789-cff2-49bc-b3f4-0de1e4aa2013",
+          "name": "Remove records from a story",
+          "request": {
+            "name": "Remove records from a story",
+            "description": {
+              "content": "Removes one or more records from a story.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "stories",
+                ":databox_id",
+                ":story_id",
+                "delrecords"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "databox_id",
+                  "description": "(Required) The databox identifier."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "story_id",
+                  "description": "(Required) The story identifier within the databox."
+                },
+                {
+                  "description": "Hostname of your Phraseanet installation.",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3d6565e5-b35b-4a0a-b5b3-918168cf54c0",
+              "name": "The updated story.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stories",
+                    ":databox_id",
+                    ":story_id",
+                    "delrecords"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "databox_id",
+                      "description": "(Required) The databox identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "story_id",
+                      "description": "(Required) The story identifier within the databox."
+                    },
+                    {
+                      "description": "Hostname of your Phraseanet installation.",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"api_version\": \"string\",\n    \"request\": \"string\",\n    \"response_time\": \"string\",\n    \"http_code\": 3423,\n    \"error_type\": \"string\",\n    \"error_message\": \"string\"\n  },\n  \"response\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a8bea04b-6d92-4b64-a91d-afe1179aa60b",
+          "name": "Set story cover",
+          "request": {
+            "name": "Set story cover",
+            "description": {
+              "content": "Sets the cover image of a story from one of its child records.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "stories",
+                ":databox_id",
+                ":story_id",
+                "setcover"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "databox_id",
+                  "description": "(Required) The databox identifier."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "story_id",
+                  "description": "(Required) The story identifier within the databox."
+                },
+                {
+                  "description": "Hostname of your Phraseanet installation.",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"record_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "409cc237-80b0-4803-a88d-e99fa9b3a404",
+              "name": "The updated story.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stories",
+                    ":databox_id",
+                    ":story_id",
+                    "setcover"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "databox_id",
+                      "description": "(Required) The databox identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "story_id",
+                      "description": "(Required) The story identifier within the databox."
+                    },
+                    {
+                      "description": "Hostname of your Phraseanet installation.",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"record_id\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"api_version\": \"string\",\n    \"request\": \"string\",\n    \"response_time\": \"string\",\n    \"http_code\": 3423,\n    \"error_type\": \"string\",\n    \"error_message\": \"string\"\n  },\n  \"response\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname of your Phraseanet installation.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "your-phraseanet-instance",
+      "key": "host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{host}}/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://your-phraseanet-instance/api/oauthv2/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://your-phraseanet-instance/api/oauthv2/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d4863f10-17a6-4aa0-b7c7-cfaa800fe201",
+    "name": "Phraseanet API (v1) Account Stories API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Phraseanet is an open-source (GPL-v3) Digital Asset Management (DAM) platform by Alchemy. This document models the documented Phraseanet REST API v1, which is secured with OAuth2 and covers records, databoxes and collections, metadata, search, stories, baskets, and feeds. Phraseanet is self-hosted, so the API is served from each organization's own instance - there is no single public shared endpoint. Replace the server host with your Phraseanet instance. All responses are wrapped in an object with `meta` and `response` fields and are JSON by default. A newer API v3 is published on SwaggerHub (alchemy-fr/phraseanet.api.v3). Endpoints here are grounded in the public v1 route documentation; request and response bodies are honestly modeled and should be confirmed against your Phraseanet version.\n\nContact Support:\n Name: Alchemy - Phraseanet",
+      "type": "text/plain"
+    }
+  }
+}

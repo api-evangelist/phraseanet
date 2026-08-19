@@ -1,0 +1,229 @@
+{
+  "item": [
+    {
+      "id": "60025432-06b9-48d0-a823-65a837ff60d3",
+      "name": "Search",
+      "description": {
+        "content": "Elasticsearch-backed search across records and stories.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a558a101-876c-4b75-bb14-9b3654d750ae",
+          "name": "Search records and stories",
+          "request": {
+            "name": "Search records and stories",
+            "description": {
+              "content": "Returns the records (and stories) matching a query. Filters include databox and collection ids, status, record type, date range, offset, and per-page limits. Backed by Elasticsearch.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname of your Phraseanet installation.",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"<string>\",\n  \"bases\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"offset_start\": 0,\n  \"per_page\": 10,\n  \"search_type\": \"<integer>\",\n  \"record_type\": \"<string>\",\n  \"status\": {\n    \"key_0\": \"<boolean>\",\n    \"key_1\": \"<boolean>\",\n    \"key_2\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e8f7b297-cd4d-43a5-b326-6e1008f7efbd",
+              "name": "Matching records with facets and paging metadata.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of your Phraseanet installation.",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"bases\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"offset_start\": 0,\n  \"per_page\": 10,\n  \"search_type\": \"<integer>\",\n  \"record_type\": \"<string>\",\n  \"status\": {\n    \"key_0\": \"<boolean>\",\n    \"key_1\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"api_version\": \"string\",\n    \"request\": \"string\",\n    \"response_time\": \"string\",\n    \"http_code\": 4261,\n    \"error_type\": \"string\",\n    \"error_message\": \"string\"\n  },\n  \"response\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "274fda0a-bde6-4a96-af61-2711df10b7eb",
+              "name": "Missing or invalid OAuth2 token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname of your Phraseanet installation.",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"bases\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"offset_start\": 0,\n  \"per_page\": 10,\n  \"search_type\": \"<integer>\",\n  \"record_type\": \"<string>\",\n  \"status\": {\n    \"key_0\": \"<boolean>\",\n    \"key_1\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"api_version\": \"string\",\n    \"request\": \"string\",\n    \"response_time\": \"string\",\n    \"http_code\": 4261,\n    \"error_type\": \"string\",\n    \"error_message\": \"string\"\n  },\n  \"response\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname of your Phraseanet installation.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "your-phraseanet-instance",
+      "key": "host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{host}}/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://your-phraseanet-instance/api/oauthv2/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://your-phraseanet-instance/api/oauthv2/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6c49c874-dae0-468a-a2b8-9b35efb775fb",
+    "name": "Phraseanet API (v1) Account Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Phraseanet is an open-source (GPL-v3) Digital Asset Management (DAM) platform by Alchemy. This document models the documented Phraseanet REST API v1, which is secured with OAuth2 and covers records, databoxes and collections, metadata, search, stories, baskets, and feeds. Phraseanet is self-hosted, so the API is served from each organization's own instance - there is no single public shared endpoint. Replace the server host with your Phraseanet instance. All responses are wrapped in an object with `meta` and `response` fields and are JSON by default. A newer API v3 is published on SwaggerHub (alchemy-fr/phraseanet.api.v3). Endpoints here are grounded in the public v1 route documentation; request and response bodies are honestly modeled and should be confirmed against your Phraseanet version.\n\nContact Support:\n Name: Alchemy - Phraseanet",
+      "type": "text/plain"
+    }
+  }
+}

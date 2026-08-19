@@ -1,0 +1,730 @@
+{
+  "item": [
+    {
+      "id": "747a75b7-3c23-44e9-89b2-de810fc93beb",
+      "name": "Metadata",
+      "description": {
+        "content": "Record captions, metadata values, and status flags.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d1ab75f1-46ee-4059-a46c-04abaad5d4ef",
+          "name": "Get record caption",
+          "request": {
+            "name": "Get record caption",
+            "description": {
+              "content": "Returns the caption (display metadata) of a record.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "records",
+                ":databox_id",
+                ":record_id",
+                "caption"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "databox_id",
+                  "description": "(Required) The databox identifier."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "record_id",
+                  "description": "(Required) The record identifier within the databox."
+                },
+                {
+                  "description": "Hostname of your Phraseanet installation.",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "166daa7b-f30f-4098-b43d-dc1d7c6887fd",
+              "name": "The record caption.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "records",
+                    ":databox_id",
+                    ":record_id",
+                    "caption"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "databox_id",
+                      "description": "(Required) The databox identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "record_id",
+                      "description": "(Required) The record identifier within the databox."
+                    },
+                    {
+                      "description": "Hostname of your Phraseanet installation.",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"api_version\": \"string\",\n    \"request\": \"string\",\n    \"response_time\": \"string\",\n    \"http_code\": 3527,\n    \"error_type\": \"string\",\n    \"error_message\": \"string\"\n  },\n  \"response\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "49cb800a-2ead-4ecf-960e-a26ef22b5f73",
+          "name": "Get record metadatas",
+          "request": {
+            "name": "Get record metadatas",
+            "description": {
+              "content": "Returns the raw metadata values of a record.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "records",
+                ":databox_id",
+                ":record_id",
+                "metadatas"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "databox_id",
+                  "description": "(Required) The databox identifier."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "record_id",
+                  "description": "(Required) The record identifier within the databox."
+                },
+                {
+                  "description": "Hostname of your Phraseanet installation.",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f9f9bae8-b14c-4b28-bceb-ea959f9eaa01",
+              "name": "The record metadatas.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "records",
+                    ":databox_id",
+                    ":record_id",
+                    "metadatas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "databox_id",
+                      "description": "(Required) The databox identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "record_id",
+                      "description": "(Required) The record identifier within the databox."
+                    },
+                    {
+                      "description": "Hostname of your Phraseanet installation.",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"api_version\": \"string\",\n    \"request\": \"string\",\n    \"response_time\": \"string\",\n    \"http_code\": 3527,\n    \"error_type\": \"string\",\n    \"error_message\": \"string\"\n  },\n  \"response\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1ac71f33-a314-4752-b5ef-f179f2672c1e",
+          "name": "Set record metadatas",
+          "request": {
+            "name": "Set record metadatas",
+            "description": {
+              "content": "Adds or modifies metadata on a record. Each entry references a metadata structure id and a value.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "records",
+                ":databox_id",
+                ":record_id",
+                "setmetadatas"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "databox_id",
+                  "description": "(Required) The databox identifier."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "record_id",
+                  "description": "(Required) The record identifier within the databox."
+                },
+                {
+                  "description": "Hostname of your Phraseanet installation.",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"metadatas\": [\n    {\n      \"meta_struct_id\": \"<integer>\",\n      \"value\": \"<string>\",\n      \"meta_id\": \"<integer>\",\n      \"append\": false\n    },\n    {\n      \"meta_struct_id\": \"<integer>\",\n      \"value\": \"<string>\",\n      \"meta_id\": \"<integer>\",\n      \"append\": false\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "76b38588-1663-4aee-ac40-d51e9c0bc8ee",
+              "name": "The updated record.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "records",
+                    ":databox_id",
+                    ":record_id",
+                    "setmetadatas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "databox_id",
+                      "description": "(Required) The databox identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "record_id",
+                      "description": "(Required) The record identifier within the databox."
+                    },
+                    {
+                      "description": "Hostname of your Phraseanet installation.",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"metadatas\": [\n    {\n      \"meta_struct_id\": \"<integer>\",\n      \"value\": \"<string>\",\n      \"meta_id\": \"<integer>\",\n      \"append\": false\n    },\n    {\n      \"meta_struct_id\": \"<integer>\",\n      \"value\": \"<string>\",\n      \"meta_id\": \"<integer>\",\n      \"append\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"api_version\": \"string\",\n    \"request\": \"string\",\n    \"response_time\": \"string\",\n    \"http_code\": 3527,\n    \"error_type\": \"string\",\n    \"error_message\": \"string\"\n  },\n  \"response\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "14999b29-ba00-4ac7-ace4-39ca2b4470bc",
+          "name": "Get record status",
+          "request": {
+            "name": "Get record status",
+            "description": {
+              "content": "Returns the status-bit values of a record.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "records",
+                ":databox_id",
+                ":record_id",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "databox_id",
+                  "description": "(Required) The databox identifier."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "record_id",
+                  "description": "(Required) The record identifier within the databox."
+                },
+                {
+                  "description": "Hostname of your Phraseanet installation.",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1f0b8e5f-5636-4d06-a61f-1d7143614350",
+              "name": "The record status.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "records",
+                    ":databox_id",
+                    ":record_id",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "databox_id",
+                      "description": "(Required) The databox identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "record_id",
+                      "description": "(Required) The record identifier within the databox."
+                    },
+                    {
+                      "description": "Hostname of your Phraseanet installation.",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"api_version\": \"string\",\n    \"request\": \"string\",\n    \"response_time\": \"string\",\n    \"http_code\": 3527,\n    \"error_type\": \"string\",\n    \"error_message\": \"string\"\n  },\n  \"response\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "20c295d6-172a-4a66-aedd-904112649c81",
+          "name": "Set record status",
+          "request": {
+            "name": "Set record status",
+            "description": {
+              "content": "Sets status-bit values on a record.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "records",
+                ":databox_id",
+                ":record_id",
+                "setstatus"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "databox_id",
+                  "description": "(Required) The databox identifier."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "record_id",
+                  "description": "(Required) The record identifier within the databox."
+                },
+                {
+                  "description": "Hostname of your Phraseanet installation.",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": {\n    \"key_0\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "da090dce-b007-4670-9f75-94ce7aa4477c",
+              "name": "The updated record.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "records",
+                    ":databox_id",
+                    ":record_id",
+                    "setstatus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "databox_id",
+                      "description": "(Required) The databox identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "record_id",
+                      "description": "(Required) The record identifier within the databox."
+                    },
+                    {
+                      "description": "Hostname of your Phraseanet installation.",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": {\n    \"key_0\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"api_version\": \"string\",\n    \"request\": \"string\",\n    \"response_time\": \"string\",\n    \"http_code\": 3527,\n    \"error_type\": \"string\",\n    \"error_message\": \"string\"\n  },\n  \"response\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname of your Phraseanet installation.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "your-phraseanet-instance",
+      "key": "host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{host}}/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://your-phraseanet-instance/api/oauthv2/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://your-phraseanet-instance/api/oauthv2/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1ed805d2-5928-4ec3-8850-2d44937fe32d",
+    "name": "Phraseanet API (v1) Account Metadata API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Phraseanet is an open-source (GPL-v3) Digital Asset Management (DAM) platform by Alchemy. This document models the documented Phraseanet REST API v1, which is secured with OAuth2 and covers records, databoxes and collections, metadata, search, stories, baskets, and feeds. Phraseanet is self-hosted, so the API is served from each organization's own instance - there is no single public shared endpoint. Replace the server host with your Phraseanet instance. All responses are wrapped in an object with `meta` and `response` fields and are JSON by default. A newer API v3 is published on SwaggerHub (alchemy-fr/phraseanet.api.v3). Endpoints here are grounded in the public v1 route documentation; request and response bodies are honestly modeled and should be confirmed against your Phraseanet version.\n\nContact Support:\n Name: Alchemy - Phraseanet",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,185 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Phraseanet API (v1) Account Records API",
+    "version": "1.5.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://your-phraseanet-instance/api/oauthv2/authorize",
+      "accessTokenUrl": "https://your-phraseanet-instance/api/oauthv2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Records",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add a record",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/api/v1/records/add",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "base_id",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Uploads a new media file into a collection, creating a record (or placing it in quarantine when validation is required)."
+        },
+        {
+          "info": {
+            "name": "Get a record",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/api/v1/records/:databox_id/:record_id",
+            "params": [
+              {
+                "name": "databox_id",
+                "value": "",
+                "type": "path",
+                "description": "The databox identifier."
+              },
+              {
+                "name": "record_id",
+                "value": "",
+                "type": "path",
+                "description": "The record identifier within the databox."
+              }
+            ]
+          },
+          "docs": "Returns a single record identified by its databox and record id."
+        },
+        {
+          "info": {
+            "name": "Get record sub-definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/api/v1/records/:databox_id/:record_id/embed",
+            "params": [
+              {
+                "name": "databox_id",
+                "value": "",
+                "type": "path",
+                "description": "The databox identifier."
+              },
+              {
+                "name": "record_id",
+                "value": "",
+                "type": "path",
+                "description": "The record identifier within the databox."
+              }
+            ]
+          },
+          "docs": "Returns the embedded sub-definitions (thumbnail, preview, document, and other resolutions) generated for a record."
+        },
+        {
+          "info": {
+            "name": "Get related records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/api/v1/records/:databox_id/:record_id/related",
+            "params": [
+              {
+                "name": "databox_id",
+                "value": "",
+                "type": "path",
+                "description": "The databox identifier."
+              },
+              {
+                "name": "record_id",
+                "value": "",
+                "type": "path",
+                "description": "The record identifier within the databox."
+              }
+            ]
+          },
+          "docs": "Returns baskets and stories that reference this record."
+        },
+        {
+          "info": {
+            "name": "Move a record to another collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/api/v1/records/:databox_id/:record_id/setcollection",
+            "params": [
+              {
+                "name": "databox_id",
+                "value": "",
+                "type": "path",
+                "description": "The databox identifier."
+              },
+              {
+                "name": "record_id",
+                "value": "",
+                "type": "path",
+                "description": "The record identifier within the databox."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Moves a record to a different collection within reach of the user."
+        },
+        {
+          "info": {
+            "name": "Delete a record",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/api/v1/records/:databox_id/:record_id/delete",
+            "params": [
+              {
+                "name": "databox_id",
+                "value": "",
+                "type": "path",
+                "description": "The databox identifier."
+              },
+              {
+                "name": "record_id",
+                "value": "",
+                "type": "path",
+                "description": "The record identifier within the databox."
+              }
+            ]
+          },
+          "docs": "Permanently deletes a record from its databox."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,117 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Phraseanet API (v1) Account Databoxes API",
+    "version": "1.5.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://your-phraseanet-instance/api/oauthv2/authorize",
+      "accessTokenUrl": "https://your-phraseanet-instance/api/oauthv2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Databoxes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List databoxes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/api/v1/databoxes/list"
+          },
+          "docs": "Returns the databoxes available to the authenticated application."
+        },
+        {
+          "info": {
+            "name": "List collections of a databox",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/api/v1/databoxes/:databox_id/collections",
+            "params": [
+              {
+                "name": "databox_id",
+                "value": "",
+                "type": "path",
+                "description": "The databox identifier."
+              }
+            ]
+          },
+          "docs": "Returns the collections available on the specified databox, each with base_id, collection_id, name, and record count."
+        },
+        {
+          "info": {
+            "name": "Get databox status structure",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/api/v1/databoxes/:databox_id/status",
+            "params": [
+              {
+                "name": "databox_id",
+                "value": "",
+                "type": "path",
+                "description": "The databox identifier."
+              }
+            ]
+          },
+          "docs": "Returns the status-bit structure defined on the databox."
+        },
+        {
+          "info": {
+            "name": "Get databox metadata structure",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/api/v1/databoxes/:databox_id/metadatas",
+            "params": [
+              {
+                "name": "databox_id",
+                "value": "",
+                "type": "path",
+                "description": "The databox identifier."
+              }
+            ]
+          },
+          "docs": "Returns the metadata-field structure of the databox that drives record captions and metadata values."
+        },
+        {
+          "info": {
+            "name": "Get databox terms of use",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/api/v1/databoxes/:databox_id/termsOfUse",
+            "params": [
+              {
+                "name": "databox_id",
+                "value": "",
+                "type": "path",
+                "description": "The databox identifier."
+              }
+            ]
+          },
+          "docs": "Returns the terms of use associated with the databox."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

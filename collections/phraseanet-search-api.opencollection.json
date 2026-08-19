@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Phraseanet API (v1) Account Search API",
+    "version": "1.5.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://your-phraseanet-instance/api/oauthv2/authorize",
+      "accessTokenUrl": "https://your-phraseanet-instance/api/oauthv2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search records and stories",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/api/v1/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the records (and stories) matching a query. Filters include databox and collection ids, status, record type, date range, offset, and per-page limits. Backed by Elasticsearch."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

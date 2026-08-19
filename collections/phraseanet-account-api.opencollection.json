@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Phraseanet API (v1) Account API",
+    "version": "1.5.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://your-phraseanet-instance/api/oauthv2/authorize",
+      "accessTokenUrl": "https://your-phraseanet-instance/api/oauthv2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Account",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the authenticated user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/api/v1/me"
+          },
+          "docs": "Returns the authenticated user (the \"me\" resource), including profile details, collection access rights, field access, and sub-definition access."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

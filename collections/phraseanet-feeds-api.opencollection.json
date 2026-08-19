@@ -1,0 +1,96 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Phraseanet API (v1) Account Feeds API",
+    "version": "1.5.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://your-phraseanet-instance/api/oauthv2/authorize",
+      "accessTokenUrl": "https://your-phraseanet-instance/api/oauthv2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Feeds",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List feeds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/api/v1/feeds/list"
+          },
+          "docs": "Returns the published feeds visible to the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Get feed content",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/api/v1/feeds/:feed_id/content",
+            "params": [
+              {
+                "name": "feed_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "offset_start",
+                "value": "",
+                "type": "query",
+                "description": "Zero-based offset of the first result to return."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results per page."
+              }
+            ]
+          },
+          "docs": "Returns the entries of a single feed with their records."
+        },
+        {
+          "info": {
+            "name": "Get aggregated feed content",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/api/v1/feeds/aggregated/content",
+            "params": [
+              {
+                "name": "offset_start",
+                "value": "",
+                "type": "query",
+                "description": "Zero-based offset of the first result to return."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results per page."
+              }
+            ]
+          },
+          "docs": "Returns an aggregated view of entries across all visible feeds."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

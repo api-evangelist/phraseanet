@@ -1,0 +1,153 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Phraseanet API (v1) Account Stories API",
+    "version": "1.5.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://your-phraseanet-instance/api/oauthv2/authorize",
+      "accessTokenUrl": "https://your-phraseanet-instance/api/oauthv2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Stories",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a story",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/api/v1/stories/add",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new story (a record that groups other records)."
+        },
+        {
+          "info": {
+            "name": "Get a story",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/api/v1/stories/:databox_id/:story_id",
+            "params": [
+              {
+                "name": "databox_id",
+                "value": "",
+                "type": "path",
+                "description": "The databox identifier."
+              },
+              {
+                "name": "story_id",
+                "value": "",
+                "type": "path",
+                "description": "The story identifier within the databox."
+              }
+            ]
+          },
+          "docs": "Returns a single story and its child records."
+        },
+        {
+          "info": {
+            "name": "Add records to a story",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/api/v1/stories/:databox_id/:story_id/addrecords",
+            "params": [
+              {
+                "name": "databox_id",
+                "value": "",
+                "type": "path",
+                "description": "The databox identifier."
+              },
+              {
+                "name": "story_id",
+                "value": "",
+                "type": "path",
+                "description": "The story identifier within the databox."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds one or more records to a story."
+        },
+        {
+          "info": {
+            "name": "Remove records from a story",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/api/v1/stories/:databox_id/:story_id/delrecords",
+            "params": [
+              {
+                "name": "databox_id",
+                "value": "",
+                "type": "path",
+                "description": "The databox identifier."
+              },
+              {
+                "name": "story_id",
+                "value": "",
+                "type": "path",
+                "description": "The story identifier within the databox."
+              }
+            ]
+          },
+          "docs": "Removes one or more records from a story."
+        },
+        {
+          "info": {
+            "name": "Set story cover",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/api/v1/stories/:databox_id/:story_id/setcover",
+            "params": [
+              {
+                "name": "databox_id",
+                "value": "",
+                "type": "path",
+                "description": "The databox identifier."
+              },
+              {
+                "name": "story_id",
+                "value": "",
+                "type": "path",
+                "description": "The story identifier within the databox."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets the cover image of a story from one of its child records."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

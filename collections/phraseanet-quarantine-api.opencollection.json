@@ -1,0 +1,59 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Phraseanet API (v1) Account Quarantine API",
+    "version": "1.5.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://your-phraseanet-instance/api/oauthv2/authorize",
+      "accessTokenUrl": "https://your-phraseanet-instance/api/oauthv2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Quarantine",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List quarantine items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/api/v1/quarantine/list"
+          },
+          "docs": "Lists items held in quarantine awaiting validation."
+        },
+        {
+          "info": {
+            "name": "Get a quarantine item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/api/v1/quarantine/:quarantine_item_id",
+            "params": [
+              {
+                "name": "quarantine_item_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns a single quarantine item by id."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

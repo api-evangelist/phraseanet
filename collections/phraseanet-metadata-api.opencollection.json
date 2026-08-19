@@ -1,0 +1,163 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Phraseanet API (v1) Account Metadata API",
+    "version": "1.5.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://your-phraseanet-instance/api/oauthv2/authorize",
+      "accessTokenUrl": "https://your-phraseanet-instance/api/oauthv2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get record caption",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/api/v1/records/:databox_id/:record_id/caption",
+            "params": [
+              {
+                "name": "databox_id",
+                "value": "",
+                "type": "path",
+                "description": "The databox identifier."
+              },
+              {
+                "name": "record_id",
+                "value": "",
+                "type": "path",
+                "description": "The record identifier within the databox."
+              }
+            ]
+          },
+          "docs": "Returns the caption (display metadata) of a record."
+        },
+        {
+          "info": {
+            "name": "Get record metadatas",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/api/v1/records/:databox_id/:record_id/metadatas",
+            "params": [
+              {
+                "name": "databox_id",
+                "value": "",
+                "type": "path",
+                "description": "The databox identifier."
+              },
+              {
+                "name": "record_id",
+                "value": "",
+                "type": "path",
+                "description": "The record identifier within the databox."
+              }
+            ]
+          },
+          "docs": "Returns the raw metadata values of a record."
+        },
+        {
+          "info": {
+            "name": "Set record metadatas",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/api/v1/records/:databox_id/:record_id/setmetadatas",
+            "params": [
+              {
+                "name": "databox_id",
+                "value": "",
+                "type": "path",
+                "description": "The databox identifier."
+              },
+              {
+                "name": "record_id",
+                "value": "",
+                "type": "path",
+                "description": "The record identifier within the databox."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds or modifies metadata on a record. Each entry references a metadata structure id and a value."
+        },
+        {
+          "info": {
+            "name": "Get record status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}/api/v1/records/:databox_id/:record_id/status",
+            "params": [
+              {
+                "name": "databox_id",
+                "value": "",
+                "type": "path",
+                "description": "The databox identifier."
+              },
+              {
+                "name": "record_id",
+                "value": "",
+                "type": "path",
+                "description": "The record identifier within the databox."
+              }
+            ]
+          },
+          "docs": "Returns the status-bit values of a record."
+        },
+        {
+          "info": {
+            "name": "Set record status",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/api/v1/records/:databox_id/:record_id/setstatus",
+            "params": [
+              {
+                "name": "databox_id",
+                "value": "",
+                "type": "path",
+                "description": "The databox identifier."
+              },
+              {
+                "name": "record_id",
+                "value": "",
+                "type": "path",
+                "description": "The record identifier within the databox."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets status-bit values on a record."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
