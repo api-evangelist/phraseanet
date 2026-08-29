@@ -13,6 +13,19 @@ description: Phraseanet is an open-source (GPL-v3) Digital Asset Management (DAM
   is no single public shared API endpoint - the API runs on each organization's
   own Phraseanet instance. Alchemy provides commercial hosting, setup, training,
   and support around the open-source core.
+deliveryModel:
+  model: unknown
+  open_source: unknown
+  commercial: true
+  callable_host: false
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  - pricing
+  - repository-unlicensed
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
@@ -406,6 +419,10 @@ apis:
   - type: Documentation
     url: https://docs.phraseanet.com/4.1/en/Devel/API/V1/Overview.html
 common:
+- type: IssueTracker
+  url: https://github.com/alchemy-fr/Phraseanet/issues
+- type: Releases
+  url: https://github.com/alchemy-fr/Phraseanet/releases
 - type: AgenticAccess
   url: agentic-access/phraseanet-agentic-access.yml
 - type: DomainSecurity
