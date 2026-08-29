@@ -1,0 +1,59 @@
+slug: phraseanet
+provider: Phraseanet
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Media, Entertainment & Telecom Content
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 4
+edges:
+- tag: Metadata
+  spec_file: phraseanet-metadata-api-openapi.yml
+  capability_id: BC-3710.20
+  capability_id_l1: BC-3710
+  capability_name: Metadata Cataloguing
+  confidence: 0.85
+  evidence: GET /records/{databox_id}/{record_id}/metadatas  getRecordMetadatas; POST /records/{databox_id}/{record_id}/setmetadatas  setRecordMetadatas  Set
+    record metadatas
+  reason: Reading and writing descriptive/technical metadata and captions on media records in a DAM platform
+    is metadata cataloguing of media assets.
+- tag: Records
+  spec_file: phraseanet-records-api-openapi.yml
+  capability_id: BC-3710
+  capability_id_l1: BC-3710
+  capability_name: Media Asset Management
+  confidence: 0.82
+  evidence: POST /records/add  addRecord  Add a record; GET /records/{databox_id}/{record_id}/embed  getRecordEmbed  Get
+    record sub-definitions
+  reason: Records are the media assets of this DAM platform; operations add, retrieve, re-collection and
+    delete assets and expose multi-resolution sub-definitions. Clearly media asset management, but spanning
+    ingest, storage and renditions so no single L2 is chosen.
+- tag: Databoxes
+  spec_file: phraseanet-databoxes-api-openapi.yml
+  capability_id: BC-3710
+  capability_id_l1: BC-3710
+  capability_name: Media Asset Management
+  confidence: 0.7
+  evidence: GET /databoxes/{databox_id}/metadatas  getDataboxMetadatas  Get databox metadata structure;
+    GET /databoxes/{databox_id}/collections  listDataboxCollections
+  reason: Databoxes are the asset repositories/collections of a DAM platform, exposing their collection,
+    status and metadata structure. Clearly media asset management at L1; the operations mix repository
+    structure and metadata schema so no single L2 is safe.
+- tag: Stories
+  spec_file: phraseanet-stories-api-openapi.yml
+  capability_id: BC-3710
+  capability_id_l1: BC-3710
+  capability_name: Media Asset Management
+  confidence: 0.7
+  evidence: POST /stories/{databox_id}/{story_id}/addrecords  addRecordsToStory  Add records to a story;
+    POST .../setcover  setStoryCover
+  reason: Stories are groupings of media records inside the Phraseanet DAM; the operations create story
+    containers, add/remove asset records and set a cover image, i.e. organisation of media assets. Kept
+    at L1 since this is asset organisation rather than specifically ingest, metadata, storage tiering
+    or transcoding.

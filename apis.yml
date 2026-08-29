@@ -419,6 +419,9 @@ apis:
   - type: Documentation
     url: https://docs.phraseanet.com/4.1/en/Devel/API/V1/Overview.html
 common:
+- type: CapabilityMap
+  url: capabilities/phraseanet-capability-edges.yml
+  name: Phraseanet Business Capability Map
 - type: IssueTracker
   url: https://github.com/alchemy-fr/Phraseanet/issues
 - type: Releases
