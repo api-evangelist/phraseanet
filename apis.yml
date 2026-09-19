@@ -183,6 +183,8 @@ apis:
   humanURL: https://docs.phraseanet.com/4.1/en/Devel/API/V1/Route/Records/Record.html
   baseURL: https://your-phraseanet-instance/api/v1
   tags:
+  - Feed
+  tags_raw:
   - Feeds
   properties:
   - type: OpenAPI
