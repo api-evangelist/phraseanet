@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Phraseanet API (v1) Account API
-  description: Phraseanet is an open-source (GPL-v3) Digital Asset Management (DAM) platform by Alchemy. This document models the documented Phraseanet REST API v1, which is secured with OAuth2 and covers records, databoxes and collections, metadata, search, stories, baskets, and feeds. Phraseanet is self-hosted, so the API is served from each organization's own instance - there is no single public shared endpoint. Replace the server host with your Phraseanet instance. All responses are wrapped in an object with `meta` and `response` fields and are JSON by default. A newer API v3 is published on SwaggerHub (alchemy-fr/phraseanet.api.v3). Endpoints here are grounded in the public v1 route documentation; request and response bodies are honestly modeled and should be confirmed against your Phraseanet version.
+  description: Phraseanet is an open-source (GPL-v3) Digital Asset Management (DAM) platform by Alchemy.
   version: 1.5.0
   contact:
     name: Alchemy - Phraseanet
@@ -48,6 +48,15 @@ components:
           schema:
             $ref: '#/components/schemas/Envelope'
   schemas:
+    Envelope:
+      type: object
+      description: Standard Phraseanet response wrapper. Every response contains a meta object and a response payload.
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        response:
+          type: object
+          description: The endpoint-specific payload.
     Meta:
       type: object
       description: Response envelope metadata.
@@ -61,20 +70,13 @@ components:
         http_code:
           type: integer
         error_type:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         error_message:
-          type: string
-          nullable: true
-    Envelope:
-      type: object
-      description: Standard Phraseanet response wrapper. Every response contains a meta object and a response payload.
-      properties:
-        meta:
-          $ref: '#/components/schemas/Meta'
-        response:
-          type: object
-          description: The endpoint-specific payload.
+          type:
+          - string
+          - 'null'
   securitySchemes:
     oauth2:
       type: oauth2

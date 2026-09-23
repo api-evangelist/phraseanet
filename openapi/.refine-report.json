@@ -1,15 +1,7 @@
 {
   "provider": "phraseanet",
   "sources": [
-    "phraseanet-account-api-openapi.yml",
-    "phraseanet-baskets-api-openapi.yml",
-    "phraseanet-databoxes-api-openapi.yml",
-    "phraseanet-feeds-api-openapi.yml",
-    "phraseanet-metadata-api-openapi.yml",
-    "phraseanet-quarantine-api-openapi.yml",
-    "phraseanet-records-api-openapi.yml",
-    "phraseanet-search-api-openapi.yml",
-    "phraseanet-stories-api-openapi.yml"
+    "_original/phraseanet-openapi.yml"
   ],
   "outputs": [
     "phraseanet-account-api-openapi.yml",
@@ -25,6 +17,20 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "phraseanet-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "phraseanet-account-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "phraseanet-baskets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "phraseanet-databoxes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "phraseanet-feeds-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "phraseanet-metadata-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "phraseanet-quarantine-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "phraseanet-records-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "phraseanet-search-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "phraseanet-stories-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
