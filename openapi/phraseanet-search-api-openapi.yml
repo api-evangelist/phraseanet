@@ -47,34 +47,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    SearchRequest:
-      type: object
-      description: Search parameters.
-      properties:
-        query:
-          type: string
-          description: The full-text query string.
-        bases:
-          type: array
-          description: Databox / collection ids to search within.
-          items:
-            type: integer
-        offset_start:
-          type: integer
-          default: 0
-        per_page:
-          type: integer
-          default: 10
-        search_type:
-          type: integer
-          description: 0 for records, 1 for stories.
-        record_type:
-          type: string
-          description: Filter by record type (image, video, audio, document).
-        status:
-          type: object
-          additionalProperties:
-            type: boolean
     Envelope:
       type: object
       description: Standard Phraseanet response wrapper. Every response contains a meta object and a response payload.
@@ -104,6 +76,34 @@ components:
           type:
           - string
           - 'null'
+    SearchRequest:
+      type: object
+      description: Search parameters.
+      properties:
+        query:
+          type: string
+          description: The full-text query string.
+        bases:
+          type: array
+          description: Databox / collection ids to search within.
+          items:
+            type: integer
+        offset_start:
+          type: integer
+          default: 0
+        per_page:
+          type: integer
+          default: 10
+        search_type:
+          type: integer
+          description: 0 for records, 1 for stories.
+        record_type:
+          type: string
+          description: Filter by record type (image, video, audio, document).
+        status:
+          type: object
+          additionalProperties:
+            type: boolean
   responses:
     Unauthorized:
       description: Missing or invalid OAuth2 token.

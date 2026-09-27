@@ -106,13 +106,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/Envelope'
 components:
-  responses:
-    Unauthorized:
-      description: Missing or invalid OAuth2 token.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Envelope'
   parameters:
     DataboxId:
       name: databox_id
@@ -122,15 +115,6 @@ components:
       schema:
         type: integer
   schemas:
-    Envelope:
-      type: object
-      description: Standard Phraseanet response wrapper. Every response contains a meta object and a response payload.
-      properties:
-        meta:
-          $ref: '#/components/schemas/Meta'
-        response:
-          type: object
-          description: The endpoint-specific payload.
     Meta:
       type: object
       description: Response envelope metadata.
@@ -151,6 +135,22 @@ components:
           type:
           - string
           - 'null'
+    Envelope:
+      type: object
+      description: Standard Phraseanet response wrapper. Every response contains a meta object and a response payload.
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        response:
+          type: object
+          description: The endpoint-specific payload.
+  responses:
+    Unauthorized:
+      description: Missing or invalid OAuth2 token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Envelope'
   securitySchemes:
     oauth2:
       type: oauth2

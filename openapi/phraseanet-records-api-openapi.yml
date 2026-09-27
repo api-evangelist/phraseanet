@@ -179,13 +179,6 @@ components:
           type:
           - string
           - 'null'
-  responses:
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Envelope'
   parameters:
     RecordId:
       name: record_id
@@ -201,6 +194,13 @@ components:
       description: The databox identifier.
       schema:
         type: integer
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Envelope'
   securitySchemes:
     oauth2:
       type: oauth2
