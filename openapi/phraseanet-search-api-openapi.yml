@@ -47,35 +47,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    Envelope:
-      type: object
-      description: Standard Phraseanet response wrapper. Every response contains a meta object and a response payload.
-      properties:
-        meta:
-          $ref: '#/components/schemas/Meta'
-        response:
-          type: object
-          description: The endpoint-specific payload.
-    Meta:
-      type: object
-      description: Response envelope metadata.
-      properties:
-        api_version:
-          type: string
-        request:
-          type: string
-        response_time:
-          type: string
-        http_code:
-          type: integer
-        error_type:
-          type:
-          - string
-          - 'null'
-        error_message:
-          type:
-          - string
-          - 'null'
     SearchRequest:
       type: object
       description: Search parameters.
@@ -104,6 +75,35 @@ components:
           type: object
           additionalProperties:
             type: boolean
+    Meta:
+      type: object
+      description: Response envelope metadata.
+      properties:
+        api_version:
+          type: string
+        request:
+          type: string
+        response_time:
+          type: string
+        http_code:
+          type: integer
+        error_type:
+          type:
+          - string
+          - 'null'
+        error_message:
+          type:
+          - string
+          - 'null'
+    Envelope:
+      type: object
+      description: Standard Phraseanet response wrapper. Every response contains a meta object and a response payload.
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        response:
+          type: object
+          description: The endpoint-specific payload.
   responses:
     Unauthorized:
       description: Missing or invalid OAuth2 token.

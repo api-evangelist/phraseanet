@@ -145,6 +145,14 @@ paths:
               schema:
                 $ref: '#/components/schemas/Envelope'
 components:
+  parameters:
+    BasketId:
+      name: basket_id
+      in: path
+      required: true
+      description: The basket identifier.
+      schema:
+        type: integer
   schemas:
     Meta:
       type: object
@@ -175,14 +183,6 @@ components:
         response:
           type: object
           description: The endpoint-specific payload.
-  parameters:
-    BasketId:
-      name: basket_id
-      in: path
-      required: true
-      description: The basket identifier.
-      schema:
-        type: integer
   securitySchemes:
     oauth2:
       type: oauth2

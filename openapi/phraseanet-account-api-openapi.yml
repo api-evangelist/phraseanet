@@ -40,6 +40,13 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid OAuth2 token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Envelope'
   schemas:
     Meta:
       type: object
@@ -70,13 +77,6 @@ components:
         response:
           type: object
           description: The endpoint-specific payload.
-  responses:
-    Unauthorized:
-      description: Missing or invalid OAuth2 token.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Envelope'
   securitySchemes:
     oauth2:
       type: oauth2
