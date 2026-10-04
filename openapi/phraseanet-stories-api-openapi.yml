@@ -136,13 +136,6 @@ paths:
                 $ref: '#/components/schemas/Envelope'
 components:
   parameters:
-    DataboxId:
-      name: databox_id
-      in: path
-      required: true
-      description: The databox identifier.
-      schema:
-        type: integer
     StoryId:
       name: story_id
       in: path
@@ -150,7 +143,23 @@ components:
       description: The story identifier within the databox.
       schema:
         type: integer
+    DataboxId:
+      name: databox_id
+      in: path
+      required: true
+      description: The databox identifier.
+      schema:
+        type: integer
   schemas:
+    Envelope:
+      type: object
+      description: Standard Phraseanet response wrapper. Every response contains a meta object and a response payload.
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        response:
+          type: object
+          description: The endpoint-specific payload.
     Meta:
       type: object
       description: Response envelope metadata.
@@ -171,15 +180,6 @@ components:
           type:
           - string
           - 'null'
-    Envelope:
-      type: object
-      description: Standard Phraseanet response wrapper. Every response contains a meta object and a response payload.
-      properties:
-        meta:
-          $ref: '#/components/schemas/Meta'
-        response:
-          type: object
-          description: The endpoint-specific payload.
   securitySchemes:
     oauth2:
       type: oauth2

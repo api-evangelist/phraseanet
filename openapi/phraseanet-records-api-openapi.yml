@@ -150,13 +150,6 @@ paths:
                 $ref: '#/components/schemas/Envelope'
 components:
   parameters:
-    DataboxId:
-      name: databox_id
-      in: path
-      required: true
-      description: The databox identifier.
-      schema:
-        type: integer
     RecordId:
       name: record_id
       in: path
@@ -164,13 +157,13 @@ components:
       description: The record identifier within the databox.
       schema:
         type: integer
-  responses:
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Envelope'
+    DataboxId:
+      name: databox_id
+      in: path
+      required: true
+      description: The databox identifier.
+      schema:
+        type: integer
   schemas:
     Meta:
       type: object
@@ -201,6 +194,13 @@ components:
         response:
           type: object
           description: The endpoint-specific payload.
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Envelope'
   securitySchemes:
     oauth2:
       type: oauth2
