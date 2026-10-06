@@ -59,7 +59,7 @@ tags_raw:
 - Search
 - Open-Source
 created: '2026-07-05'
-modified: '2026-07-05'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: phraseanet:phraseanet-account-api
@@ -425,6 +425,8 @@ apis:
   - type: Documentation
     url: https://docs.phraseanet.com/4.1/en/Devel/API/V1/Overview.html
 common:
+- url: https://www.phraseanet.com/en/blog
+  type: Blog
 - type: CapabilityMap
   url: capabilities/phraseanet-capability-edges.yml
   name: Phraseanet Business Capability Map
