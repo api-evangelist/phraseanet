@@ -1,18 +1,73 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/phraseanet-openapi.yml
-docs: https://docs.phraseanet.com/4.1/en/Devel/API/V1/Authentication.html
-note: Phraseanet's OAuth2 does not use or document scopes - access is governed by
-  the authenticated user's rights and collection access within the self-hosted
-  Phraseanet instance, with application registration and user-revocable access
-  instead of scope grants
-  (https://docs.phraseanet.com/4.1/en/Devel/API/V1/Authentication.html).
+generated: '2026-10-14'
+method: none
+source: openapi/phraseanet-account-api-openapi.yml, openapi/phraseanet-baskets-api-openapi.yml,
+  openapi/phraseanet-databoxes-api-openapi.yml, openapi/phraseanet-feeds-api-openapi.yml, openapi/phraseanet-metadata-api-openapi.yml,
+  openapi/phraseanet-quarantine-api-openapi.yml, openapi/phraseanet-records-api-openapi.yml,
+  openapi/phraseanet-search-api-openapi.yml, openapi/phraseanet-stories-api-openapi.yml
 schemes:
 - name: oauth2
-  source: openapi/phraseanet-openapi.yml
+  source: openapi/phraseanet-account-api-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://your-phraseanet-instance/api/oauthv2/authorize
+    tokenUrl: https://your-phraseanet-instance/api/oauthv2/token
+  description: OAuth2. Register an application in Phraseanet to obtain a client id and secret.
+- name: oauth2
+  source: openapi/phraseanet-baskets-api-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://your-phraseanet-instance/api/oauthv2/authorize
+    tokenUrl: https://your-phraseanet-instance/api/oauthv2/token
+  description: OAuth2. Register an application in Phraseanet to obtain a client id and secret.
+- name: oauth2
+  source: openapi/phraseanet-databoxes-api-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://your-phraseanet-instance/api/oauthv2/authorize
+    tokenUrl: https://your-phraseanet-instance/api/oauthv2/token
+  description: OAuth2. Register an application in Phraseanet to obtain a client id and secret.
+- name: oauth2
+  source: openapi/phraseanet-feeds-api-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://your-phraseanet-instance/api/oauthv2/authorize
+    tokenUrl: https://your-phraseanet-instance/api/oauthv2/token
+  description: OAuth2. Register an application in Phraseanet to obtain a client id and secret.
+- name: oauth2
+  source: openapi/phraseanet-metadata-api-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://your-phraseanet-instance/api/oauthv2/authorize
+    tokenUrl: https://your-phraseanet-instance/api/oauthv2/token
+  description: OAuth2. Register an application in Phraseanet to obtain a client id and secret.
+- name: oauth2
+  source: openapi/phraseanet-quarantine-api-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://your-phraseanet-instance/api/oauthv2/authorize
+    tokenUrl: https://your-phraseanet-instance/api/oauthv2/token
+  description: OAuth2. Register an application in Phraseanet to obtain a client id and secret.
+- name: oauth2
+  source: openapi/phraseanet-records-api-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://your-phraseanet-instance/api/oauthv2/authorize
+    tokenUrl: https://your-phraseanet-instance/api/oauthv2/token
+  description: OAuth2. Register an application in Phraseanet to obtain a client id and secret.
+- name: oauth2
+  source: openapi/phraseanet-search-api-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://your-phraseanet-instance/api/oauthv2/authorize
+    tokenUrl: https://your-phraseanet-instance/api/oauthv2/token
+  description: OAuth2. Register an application in Phraseanet to obtain a client id and secret.
+- name: oauth2
+  source: openapi/phraseanet-stories-api-openapi.yml
   flows:
   - flow: authorizationCode
     authorizationUrl: https://your-phraseanet-instance/api/oauthv2/authorize
     tokenUrl: https://your-phraseanet-instance/api/oauthv2/token
   description: OAuth2. Register an application in Phraseanet to obtain a client id and secret.
 scopes: []
+note: The OAuth2 security scheme(s) in the OpenAPI declare no scopes, and no security requirement
+  references one.
