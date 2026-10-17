@@ -149,21 +149,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/Envelope'
 components:
-  parameters:
-    RecordId:
-      name: record_id
-      in: path
-      required: true
-      description: The record identifier within the databox.
-      schema:
-        type: integer
-    DataboxId:
-      name: databox_id
-      in: path
-      required: true
-      description: The databox identifier.
-      schema:
-        type: integer
   schemas:
     Meta:
       type: object
@@ -201,6 +186,21 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Envelope'
+  parameters:
+    DataboxId:
+      name: databox_id
+      in: path
+      required: true
+      description: The databox identifier.
+      schema:
+        type: integer
+    RecordId:
+      name: record_id
+      in: path
+      required: true
+      description: The record identifier within the databox.
+      schema:
+        type: integer
   securitySchemes:
     oauth2:
       type: oauth2
